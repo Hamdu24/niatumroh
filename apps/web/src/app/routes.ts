@@ -113,7 +113,16 @@ if (import.meta.env.DEV) {
 	}
 }
 const tree = buildRouteTree(__dirname);
-const notFound = route('*?', './__create/not-found.tsx');
-const routes = [...generateRoutes(tree), notFound];
+
+const apiRoutes = [
+  route('api/packages', './api/packages/route.js'),
+  route('api/packages/:id', './api/packages/[id]/route.js'),
+  route('api/enquiries', './api/enquiries/route.js'),
+  route('api/enquiries/:id', './api/enquiries/[id]/route.js'),
+];
+
+const notFound = route('*', './__create/not-found.tsx');
+
+const routes = [...apiRoutes, ...generateRoutes(tree), notFound];
 
 export default routes;

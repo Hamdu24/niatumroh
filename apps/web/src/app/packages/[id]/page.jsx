@@ -1,4 +1,5 @@
 "use client";
+import { packages as staticPackages } from "@/data/packages";
 import { useState, useEffect } from "react";
 import {
   Phone,
@@ -34,16 +35,39 @@ export default function PackageDetailPage({ params }) {
   const [submitError, setSubmitError] = useState(null);
 
   useEffect(() => {
-    fetch(`/api/packages/${params.id}`)
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data) => setPkg(data.package))
-      .catch(() => setPkg(null))
-      .finally(() => setLoading(false));
-    fetch("/api/packages")
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data) => setAllPackages(data.packages || []))
-      .catch(() => {});
-  }, [params.id]);
+  fetch(`/api/packages/${params.id}`)
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then((data) => {
+      if (data.package) {
+        setPkg(data.package);
+      } else {
+        const fallbackPackage = staticPackages.find(
+          (item) => String(item.id) === String(params.id)
+        );
+        setPkg(fallbackPackage || null);
+      }
+    })
+    .catch(() => {
+      const fallbackPackage = staticPackages.find(
+        (item) => String(item.id) === String(params.id)
+      );
+      setPkg(fallbackPackage || null);
+    })
+    .finally(() => setLoading(false));
+
+  fetch("/api/packages")
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then((data) => {
+      if (data.packages && data.packages.length > 0) {
+        setAllPackages(data.packages);
+      } else {
+        setAllPackages(staticPackages);
+      }
+    })
+    .catch(() => {
+      setAllPackages(staticPackages);
+    });
+}, [params.id]);
 
   if (loading) {
     return (

@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { packages as staticPackages } from "@/data/packages";
 import {
   Phone,
   ChevronDown,
@@ -105,7 +106,7 @@ const testimonials = [
 ];
 
 export default function HomePage() {
-  const [packages, setPackages] = useState([]);
+  const [packages, setPackages] = useState(staticPackages);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
   const [activeSlide, setActiveSlide] = useState(0);
@@ -120,11 +121,20 @@ export default function HomePage() {
   });
 
   useEffect(() => {
-    fetch("/api/packages")
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data) => setPackages(data.packages || []))
-      .catch((err) => console.error("Failed to load packages", err));
-  }, []);
+  fetch("/api/packages")
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then((data) => {
+      if (data.packages && data.packages.length > 0) {
+        setPackages(data.packages);
+      } else {
+        setPackages(staticPackages);
+      }
+    })
+    .catch((err) => {
+      console.error("Failed to load packages", err);
+      setPackages(staticPackages);
+    });
+}, []);
 
   const handleSliderScroll = () => {
     if (!sliderRef.current) return;
@@ -633,9 +643,12 @@ export default function HomePage() {
                       <button className="w-full flex items-center justify-center gap-2 border-2 border-[#8B2070] text-[#8B2070] py-3 rounded-xl text-xs font-bold hover:bg-[#8B2070] hover:text-white transition-colors">
                         <Phone size={13} /> Call Our Hajj &amp; Umrah Expert
                       </button>
-                      <button className="w-full bg-[#c8961a] hover:bg-[#b5841a] text-white py-3 rounded-xl text-xs font-bold transition-colors">
-                        Enquire Now
-                      </button>
+                      <a
+  href="/enquiry"
+  className="w-full flex items-center justify-center bg-[#c8961a] hover:bg-[#b5841a] text-white py-3 rounded-xl text-xs font-bold transition-colors"
+>
+  Enquire Now
+</a>
                     </div>
                   </div>
                 </div>
