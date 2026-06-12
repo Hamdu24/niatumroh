@@ -1,4 +1,4 @@
-"use client";
+import { adminAuthResponse } from "@/app/api/utils/auth";
 import { useEffect, useState } from "react";
 import {
   Package,
@@ -6,8 +6,17 @@ import {
   TrendingUp,
   Eye,
   ChevronRight,
-  RefreshCw,
 } from "lucide-react";
+
+export async function loader({ request }) {
+  const auth = adminAuthResponse(request);
+
+  if (auth) {
+    throw auth;
+  }
+
+  return null;
+}
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -15,6 +24,7 @@ export default function AdminDashboard() {
     enquiries: 0,
     newEnquiries: 0,
   });
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,8 +34,10 @@ export default function AdminDashboard() {
           fetch("/api/packages?active=false"),
           fetch("/api/enquiries"),
         ]);
+
         const pkgData = await pkgRes.json();
         const enqData = await enqRes.json();
+
         setStats({
           packages: pkgData.packages?.length || 0,
           enquiries: enqData.enquiries?.length || 0,
@@ -33,11 +45,12 @@ export default function AdminDashboard() {
             enqData.enquiries?.filter((e) => e.status === "new").length || 0,
         });
       } catch (err) {
-        console.error(err);
+        console.error("Failed to fetch admin stats:", err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchStats();
   }, []);
 
@@ -65,7 +78,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Header */}
       <header className="bg-[#1a1a2e] px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <a href="/">
@@ -75,8 +87,12 @@ export default function AdminDashboard() {
               </span>
             </div>
           </a>
-          <span className="text-gray-400 text-sm hidden sm:block">/ Admin</span>
+
+          <span className="text-gray-400 text-sm hidden sm:block">
+            / Admin
+          </span>
         </div>
+
         <a
           href="/"
           className="text-gray-400 text-xs hover:text-white flex items-center gap-1 transition-colors"
@@ -87,13 +103,15 @@ export default function AdminDashboard() {
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+          <h1 className="text-2xl font-bold text-gray-900">
+            Admin Dashboard
+          </h1>
+
           <p className="text-gray-500 text-sm mt-1">
             Manage your website content and customer enquiries
           </p>
         </div>
 
-        {/* Quick stats */}
         <div className="grid grid-cols-3 gap-3 mb-8">
           {[
             {
@@ -125,6 +143,7 @@ export default function AdminDashboard() {
               >
                 <s.icon size={18} style={{ color: s.color }} />
               </div>
+
               {loading ? (
                 <div className="h-7 bg-gray-100 rounded animate-pulse mx-auto w-8 mb-1" />
               ) : (
@@ -132,16 +151,17 @@ export default function AdminDashboard() {
                   {s.value}
                 </p>
               )}
+
               <p className="text-xs text-gray-500">{s.label}</p>
             </div>
           ))}
         </div>
 
-        {/* Navigation cards */}
         <div className="space-y-3">
           <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
             Content Management
           </h2>
+
           {navItems.map((item, i) => (
             <a
               key={i}
@@ -154,17 +174,21 @@ export default function AdminDashboard() {
               >
                 <item.icon size={22} style={{ color: item.color }} />
               </div>
+
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   <p className="font-bold text-gray-900">{item.label}</p>
+
                   {item.badge > 0 && (
                     <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                       {item.badge} new
                     </span>
                   )}
                 </div>
+
                 <p className="text-gray-500 text-sm">{item.desc}</p>
               </div>
+
               <div className="flex items-center gap-2 flex-shrink-0">
                 <span
                   className="text-xl font-extrabold"
@@ -172,6 +196,7 @@ export default function AdminDashboard() {
                 >
                   {loading ? "—" : item.count}
                 </span>
+
                 <ChevronRight
                   size={18}
                   className="text-gray-300 group-hover:text-gray-500 transition-colors"
@@ -181,9 +206,9 @@ export default function AdminDashboard() {
           ))}
         </div>
 
-        {/* Quick links */}
         <div className="mt-8 bg-[#1a1a2e] rounded-2xl p-5">
           <p className="text-white font-bold text-sm mb-3">Quick Links</p>
+
           <div className="flex flex-wrap gap-2">
             {[
               { label: "View Homepage", href: "/" },
@@ -206,8 +231,11 @@ export default function AdminDashboard() {
       </div>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+        body {
+          font-family: "Inter", sans-serif;
+        }
       `}</style>
     </div>
   );
