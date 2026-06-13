@@ -177,7 +177,7 @@ export default function HomePage() {
           <div className="flex items-center gap-2">
             <div className="bg-[#1a1a2e] rounded-lg p-2">
               <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                I'TIMAAR
+                Jejak Imani
               </span>
             </div>
           </div>
@@ -207,6 +207,12 @@ export default function HomePage() {
               className="hover:text-[#c0392b] transition-colors"
             >
               Contact
+            </a>
+            <a
+              href="/blog"
+              className="hover:text-[#c0392b] transition-colors"
+            >
+              Blog
             </a>
           </nav>
 
@@ -250,8 +256,11 @@ export default function HomePage() {
             <a href="/contact" onClick={() => setMenuOpen(false)}>
               Contact
             </a>
+            <a href="/blog" onClick={() => setMenuOpen(false)}>
+              Blog
+            </a>
             <div className="pt-2 border-t flex flex-col gap-2">
-              <a href="tel:+442012345678" className="flex items-center gap-2">
+              <a href="tel:+6281365400494" className="flex items-center gap-2">
                 <Phone size={16} className="text-[#c0392b]" />
                 <span>+44 20 1234 5678</span>
               </a>
@@ -964,7 +973,7 @@ export default function HomePage() {
             <div className="col-span-2 md:col-span-1">
               <div className="bg-white/10 rounded-lg p-3 inline-block mb-4">
                 <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                  I'TIMAAR
+                  Jejak Imani
                 </span>
               </div>
               <p className="text-sm leading-relaxed text-gray-400 mb-4">
