@@ -119,6 +119,8 @@ const apiRoutes = [
   route('api/packages/:id', './api/packages/[id]/route.js'),
   route('api/enquiries', './api/enquiries/route.js'),
   route('api/enquiries/:id', './api/enquiries/[id]/route.js'),
+  route('api/blog', './api/blog/route.js'),
+  route('api/blog/:slug', './api/blog/[slug]/route.js'),
 ];
 
 const notFound = route('*', './__create/not-found.tsx');
