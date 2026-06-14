@@ -19,34 +19,34 @@ import {
 import { packages } from "@/data/packages";
 
 const airports = [
-  "Jakarta Soekarno-Hatta (CGK)",
-  "Surabaya Juanda (SUB)",
-  "Medan Kualanamu (KNO)",
-  "Makassar Sultan Hasanuddin (UPG)",
-  "Yogyakarta International Airport (YIA)",
-  "Semarang Ahmad Yani (SRG)",
-  "Denpasar Ngurah Rai (DPS)",
+  "London Heathrow (LHR)",
+  "London Gatwick (LGW)",
+  "Manchester (MAN)",
+  "Birmingham (BHX)",
+  "Edinburgh (EDI)",
+  "Leeds Bradford (LBA)",
+  "Glasgow (GLA)",
 ];
 
 const budgets = [
-  "Di bawah Rp25 juta per orang",
-  "Rp25 juta – Rp30 juta per orang",
-  "Rp30 juta – Rp40 juta per orang",
-  "Rp40 juta – Rp55 juta per orang",
-  "Di atas Rp55 juta per orang",
-  "Fleksibel / Belum yakin",
+  "Under £900 per person",
+  "£900 – £1,200 per person",
+  "£1,200 – £2,000 per person",
+  "£2,000 – £3,500 per person",
+  "£3,500+ per person",
+  "Flexible / Not sure yet",
 ];
 
 const departures = [
-  "Januari 2026",
-  "Februari 2026",
-  "Maret 2026",
-  "Ramadhan 2026",
-  "Mei 2026",
-  "Juni 2026",
-  "Juli 2026",
-  "Haji 2026",
-  "Fleksibel",
+  "January 2026",
+  "February 2026",
+  "March 2026",
+  "Ramadan 2026",
+  "May 2026",
+  "June 2026",
+  "July 2026",
+  "Hajj 2026",
+  "Flexible",
 ];
 
 export default function EnquiryPage() {
@@ -90,7 +90,7 @@ export default function EnquiryPage() {
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      setError("Terjadi kendala. Silakan coba lagi atau hubungi kami langsung.");
+      setError("Something went wrong. Please try again or call us directly.");
     } finally {
       setLoading(false);
     }
@@ -103,11 +103,11 @@ export default function EnquiryPage() {
           <a href="/">
             <div className="bg-[#1a1a2e] rounded-lg p-2">
               <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                Jejak Imani
+                I'TIMAAR
               </span>
             </div>
           </a>
-          <a href="tel:+6285825326780" className="text-[#c0392b]">
+          <a href="tel:+442012345678" className="text-[#c0392b]">
             <Phone size={20} />
           </a>
         </header>
@@ -116,27 +116,28 @@ export default function EnquiryPage() {
             <Check size={36} className="text-green-600" strokeWidth={2.5} />
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Permintaan Konsultasi Diterima! 🤲
+            Enquiry Received! 🤲
           </h2>
           <p className="text-gray-500 text-sm max-w-sm mb-2">
-            Jazakumullah khair, <strong>{form.full_name}</strong>! Tim Jejak Imani akan menghubungi Anda maksimal dalam{" "}
+            JazakAllah Khair, <strong>{form.full_name}</strong>! One of our Hajj
+            &amp; Umrah experts will contact you within{" "}
             <strong>24 hours</strong>.
           </p>
           <p className="text-gray-400 text-xs mb-8">
-            Konfirmasi telah dikirim ke <strong>{form.email}</strong>
+            A confirmation has been sent to <strong>{form.email}</strong>
           </p>
           <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs">
             <a
               href="/"
               className="flex-1 border-2 border-[#8B2070] text-[#8B2070] py-3 rounded-xl text-sm font-bold text-center"
             >
-              Kembali ke Beranda
+              Back to Home
             </a>
             <a
               href="/#packages"
               className="flex-1 bg-[#8B2070] text-white py-3 rounded-xl text-sm font-bold text-center"
             >
-              Lihat Paket
+              View Packages
             </a>
           </div>
         </div>
@@ -152,15 +153,15 @@ export default function EnquiryPage() {
           <a href="/">
             <div className="bg-[#1a1a2e] rounded-lg p-2">
               <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                Jejak Imani
+                I'TIMAAR
               </span>
             </div>
           </a>
           <div className="hidden md:flex items-center gap-2 text-sm text-gray-700">
             <Phone size={15} className="text-[#c0392b]" />
-            <span className="font-semibold">+62 858-2532-6780</span>
+            <span className="font-semibold">+44 20 1234 5678</span>
           </div>
-          <a href="tel:+6285825326780" className="md:hidden text-[#c0392b]">
+          <a href="tel:+442012345678" className="md:hidden text-[#c0392b]">
             <Phone size={20} />
           </a>
         </div>
@@ -173,13 +174,13 @@ export default function EnquiryPage() {
             href="/#packages"
             className="inline-flex items-center gap-1 text-sm text-[#8B2070] font-semibold mb-3"
           >
-            <ChevronLeft size={16} /> Kembali ke Paket
+            <ChevronLeft size={16} /> Back to Packages
           </a>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-            Rencanakan Perjalanan Ibadah Anda
+            Book Your Sacred Journey
           </h1>
           <p className="text-gray-500 text-sm mt-1">
-            Isi data berikut, lalu tim kami akan menghubungi Anda maksimal dalam 24 jam.
+            Fill in your details and we'll get back to you within 24 hours.
           </p>
         </div>
 
@@ -201,10 +202,10 @@ export default function EnquiryPage() {
                 style={{ color: step >= s ? "#8B2070" : "#9ca3af" }}
               >
                 {s === 1
-                  ? "Data Diri"
+                  ? "Your Details"
                   : s === 2
-                    ? "Info Perjalanan"
-                    : "Pesan Akhir"}
+                    ? "Trip Info"
+                    : "Final Message"}
               </span>
               {s < 3 && (
                 <div
@@ -220,15 +221,15 @@ export default function EnquiryPage() {
         {step === 1 && (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-4">
             <h2 className="font-bold text-gray-800 text-base flex items-center gap-2">
-              <User size={18} className="text-[#8B2070]" /> Data Kontak Anda
+              <User size={18} className="text-[#8B2070]" /> Your Contact Details
             </h2>
             <div>
               <label className="text-xs text-gray-500 font-medium block mb-1">
-                Nama Lengkap *
+                Full Name *
               </label>
               <input
                 type="text"
-                placeholder="Contoh: Ahmad Ali"
+                placeholder="e.g. Ahmed Ali"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070]"
                 value={form.full_name}
                 onChange={(e) => set("full_name", e.target.value)}
@@ -236,11 +237,11 @@ export default function EnquiryPage() {
             </div>
             <div>
               <label className="text-xs text-gray-500 font-medium block mb-1">
-                Alamat Email *
+                Email Address *
               </label>
               <input
                 type="email"
-                placeholder="emailanda@email.com"
+                placeholder="your@email.com"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070]"
                 value={form.email}
                 onChange={(e) => set("email", e.target.value)}
@@ -248,11 +249,11 @@ export default function EnquiryPage() {
             </div>
             <div>
               <label className="text-xs text-gray-500 font-medium block mb-1">
-                Nomor WhatsApp *
+                Phone Number *
               </label>
               <input
                 type="tel"
-                placeholder="+62 812 0000 0000"
+                placeholder="+44 7700 000000"
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070]"
                 value={form.phone}
                 onChange={(e) => set("phone", e.target.value)}
@@ -267,27 +268,28 @@ export default function EnquiryPage() {
                 color: step1Valid ? "#fff" : "#9ca3af",
               }}
             >
-              Lanjut →
+              Continue →
             </button>
           </div>
         )}
 
-        {/* STEP 2: Info Perjalanan */}
+        {/* STEP 2: Trip Info */}
         {step === 2 && (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-4">
             <h2 className="font-bold text-gray-800 text-base flex items-center gap-2">
-              <Plane size={18} className="text-[#8B2070]" /> Preferensi Perjalanan Anda
+              <Plane size={18} className="text-[#8B2070]" /> Your Trip
+              Preferences
             </h2>
             <div>
               <label className="text-xs text-gray-500 font-medium block mb-1">
-                Paket yang Diminati
+                Package Interested In
               </label>
               <select
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
                 value={form.package_name}
                 onChange={(e) => set("package_name", e.target.value)}
               >
-                <option value="">Apa saja / Belum yakin</option>
+                <option value="">Any / Not sure yet</option>
                 {packages.map((p) => (
                   <option key={p.id} value={p.title}>
                     {p.title} — {p.price}
@@ -298,7 +300,7 @@ export default function EnquiryPage() {
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="text-xs text-gray-500 font-medium block mb-1">
-                  Jumlah Dewasa *
+                  No. of Adults *
                 </label>
                 <select
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
@@ -314,7 +316,7 @@ export default function EnquiryPage() {
               </div>
               <div>
                 <label className="text-xs text-gray-500 font-medium block mb-1">
-                  Jumlah Anak
+                  No. of Children
                 </label>
                 <select
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
@@ -329,14 +331,14 @@ export default function EnquiryPage() {
             </div>
             <div>
               <label className="text-xs text-gray-500 font-medium block mb-1">
-                Perkiraan Keberangkatan
+                Preferred Departure
               </label>
               <select
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
                 value={form.departure}
                 onChange={(e) => set("departure", e.target.value)}
               >
-                <option value="">Pilih bulan...</option>
+                <option value="">Select month...</option>
                 {departures.map((d) => (
                   <option key={d}>{d}</option>
                 ))}
@@ -344,14 +346,14 @@ export default function EnquiryPage() {
             </div>
             <div>
               <label className="text-xs text-gray-500 font-medium block mb-1">
-                Bandara Keberangkatan
+                Departing Airport
               </label>
               <select
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
                 value={form.airport}
                 onChange={(e) => set("airport", e.target.value)}
               >
-                <option value="">Pilih bandara...</option>
+                <option value="">Select airport...</option>
                 {airports.map((a) => (
                   <option key={a}>{a}</option>
                 ))}
@@ -359,14 +361,14 @@ export default function EnquiryPage() {
             </div>
             <div>
               <label className="text-xs text-gray-500 font-medium block mb-1">
-                Anggaran per Orang
+                Budget Per Person
               </label>
               <select
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
                 value={form.budget}
                 onChange={(e) => set("budget", e.target.value)}
               >
-                <option value="">Pilih anggaran...</option>
+                <option value="">Select budget...</option>
                 {budgets.map((b) => (
                   <option key={b}>{b}</option>
                 ))}
@@ -377,7 +379,7 @@ export default function EnquiryPage() {
                 onClick={() => setStep(1)}
                 className="flex-1 py-3.5 rounded-xl text-sm font-bold border-2 border-gray-200 text-gray-500 hover:border-gray-300 transition-colors"
               >
-                ← Kembali
+                ← Back
               </button>
               <button
                 onClick={() => setStep(3)}
@@ -385,7 +387,7 @@ export default function EnquiryPage() {
                 className="flex-1 py-3.5 rounded-xl text-sm font-bold transition-colors"
                 style={{ backgroundColor: "#8B2070", color: "#fff" }}
               >
-                Lanjut →
+                Continue →
               </button>
             </div>
           </div>
@@ -396,15 +398,16 @@ export default function EnquiryPage() {
           <div className="space-y-4">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-4">
               <h2 className="font-bold text-gray-800 text-base flex items-center gap-2">
-                <MessageSquare size={18} className="text-[#8B2070]" /> Ada Informasi Tambahan?
+                <MessageSquare size={18} className="text-[#8B2070]" /> Anything
+                Else?
               </h2>
               <div>
                 <label className="text-xs text-gray-500 font-medium block mb-1">
-                  Kebutuhan Khusus atau Pertanyaan
+                  Special Requirements or Questions
                 </label>
                 <textarea
                   rows={4}
-                  placeholder="Contoh: membutuhkan kursi roda, preferensi hotel tertentu, keberangkatan rombongan, kebutuhan makanan khusus..."
+                  placeholder="e.g. Wheelchair assistance needed, specific hotel preference, group booking, dietary requirements..."
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070] resize-none"
                   value={form.message}
                   onChange={(e) => set("message", e.target.value)}
@@ -415,11 +418,11 @@ export default function EnquiryPage() {
             {/* Summary card */}
             <div className="bg-[#f3e8f5] rounded-2xl p-4 border border-[#dbb8e0]">
               <p className="text-[#8B2070] font-bold text-sm mb-3">
-                📋 Ringkasan Konsultasi Anda
+                📋 Your Enquiry Summary
               </p>
               <div className="space-y-1.5 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Nama</span>
+                  <span className="text-gray-500">Name</span>
                   <span className="font-semibold text-gray-800">
                     {form.full_name}
                   </span>
@@ -431,31 +434,31 @@ export default function EnquiryPage() {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Nomor WhatsApp</span>
+                  <span className="text-gray-500">Phone</span>
                   <span className="font-semibold text-gray-800">
                     {form.phone}
                   </span>
                 </div>
                 {form.package_name && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Paket</span>
+                    <span className="text-gray-500">Package</span>
                     <span className="font-semibold text-gray-800 text-right max-w-[55%]">
                       {form.package_name}
                     </span>
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Jamaah</span>
+                  <span className="text-gray-500">Travellers</span>
                   <span className="font-semibold text-gray-800">
-                    {form.adults} dewasa
+                    {form.adults} adult{form.adults !== "1" ? "s" : ""}
                     {form.children !== "0"
-                      ? `, ${form.children} anak`
+                      ? `, ${form.children} child${form.children !== "1" ? "ren" : ""}`
                       : ""}
                   </span>
                 </div>
                 {form.departure && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Keberangkatan</span>
+                    <span className="text-gray-500">Departure</span>
                     <span className="font-semibold text-gray-800">
                       {form.departure}
                     </span>
@@ -463,7 +466,7 @@ export default function EnquiryPage() {
                 )}
                 {form.airport && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Bandara</span>
+                    <span className="text-gray-500">Airport</span>
                     <span className="font-semibold text-gray-800 text-right max-w-[55%]">
                       {form.airport}
                     </span>
@@ -471,7 +474,7 @@ export default function EnquiryPage() {
                 )}
                 {form.budget && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Anggaran</span>
+                    <span className="text-gray-500">Budget</span>
                     <span className="font-semibold text-gray-800 text-right max-w-[55%]">
                       {form.budget}
                     </span>
@@ -491,7 +494,7 @@ export default function EnquiryPage() {
                 onClick={() => setStep(2)}
                 className="flex-1 py-3.5 rounded-xl text-sm font-bold border-2 border-gray-200 text-gray-500 hover:border-gray-300 transition-colors"
               >
-                ← Kembali
+                ← Back
               </button>
               <button
                 onClick={handleSubmit}
@@ -503,7 +506,7 @@ export default function EnquiryPage() {
                   <span className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
                 ) : (
                   <>
-                    <Send size={14} /> Kirim Konsultasi
+                    <Send size={14} /> Send Enquiry
                   </>
                 )}
               </button>
@@ -512,9 +515,9 @@ export default function EnquiryPage() {
             {/* Trust badges */}
             <div className="flex flex-wrap justify-center gap-4 pt-2 pb-4">
               {[
-                { icon: Shield, label: "Informasi Aman" },
-                { icon: Award, label: "Layanan Terpercaya" },
-                { icon: PhoneCall, label: "Respons 24 Jam" },
+                { icon: Shield, label: "ATOL Protected" },
+                { icon: Award, label: "ABTA & IATA" },
+                { icon: PhoneCall, label: "24hr Response" },
               ].map((b, i) => (
                 <div
                   key={i}
