@@ -15,32 +15,32 @@ import {
 
 const offices = [
   {
-    city: "Jakarta",
-    address: "Jakarta, Indonesia",
-    phone: "+62 858-2532-6780",
+    city: "London",
+    address: "142 Whitechapel High Street, London E1 7QX",
+    phone: "+44 20 1234 5678",
     email: "london@itimaar.co.uk",
-    hours: "Senin–Jumat 09.00–17.00 · Sabtu 09.00–14.00",
+    hours: "Mon–Fri 9am–6pm · Sat 10am–4pm",
     emoji: "🏙️",
   },
   {
-    city: "Surabaya",
-    address: "Surabaya, Indonesia",
-    phone: "+62 858-2532-6780",
+    city: "Manchester",
+    address: "88 Wilmslow Road, Manchester M14 5AL",
+    phone: "+44 161 234 5678",
     email: "manchester@itimaar.co.uk",
-    hours: "Senin–Jumat 09.00–17.00 · Sabtu 09.00–14.00",
+    hours: "Mon–Fri 9am–6pm · Sat 10am–4pm",
     emoji: "🏙️",
   },
   {
-    city: "Online",
-    address: "Konsultasi online seluruh Indonesia",
-    phone: "+62 858-2532-6780",
+    city: "Birmingham",
+    address: "55 Coventry Road, Birmingham B10 0TU",
+    phone: "+44 121 234 5678",
     email: "birmingham@itimaar.co.uk",
-    hours: "Setiap hari sesuai jadwal konsultasi",
+    hours: "Mon–Fri 9am–6pm · Sat 10am–4pm",
     emoji: "🏙️",
   },
 ];
 
-export default function KontakPage() {
+export default function ContactPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -66,7 +66,7 @@ export default function KontakPage() {
         body: JSON.stringify({
           full_name: form.name,
           email: form.email,
-          phone: form.phone || "Tidak diisi",
+          phone: form.phone || "N/A",
           message: `[${form.subject}] ${form.message}`,
         }),
       });
@@ -74,7 +74,7 @@ export default function KontakPage() {
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      setError("Terjadi kendala. Silakan hubungi kami langsung melalui WhatsApp atau telepon.");
+      setError("Something went wrong. Please call us directly.");
     } finally {
       setLoading(false);
     }
@@ -90,41 +90,41 @@ export default function KontakPage() {
           <a href="/">
             <div className="bg-[#1a1a2e] rounded-lg p-2">
               <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                Jejak Imani
+                I'TIMAAR
               </span>
             </div>
           </a>
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
             <a href="/" className="hover:text-[#c0392b] transition-colors">
-              Beranda
+              Home
             </a>
             <a
               href="/#packages"
               className="hover:text-[#c0392b] transition-colors"
             >
-              Paket Umroh
+              Packages
             </a>
             <a href="/about" className="hover:text-[#c0392b] transition-colors">
-              Tentang Kami
+              About Us
             </a>
             <a href="/contact" className="text-[#8B2070] font-bold">
-              Kontak
+              Contact
             </a>
           </nav>
           <div className="hidden md:flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm text-gray-700">
               <Phone size={16} className="text-[#c0392b]" />
-              <span className="font-semibold">+62 858-2532-6780</span>
+              <span className="font-semibold">+44 20 1234 5678</span>
             </div>
             <a
               href="/enquiry"
               className="bg-[#c0392b] text-white px-4 py-2 rounded text-sm font-semibold hover:bg-[#a93226] transition-colors"
             >
-              Konsultasi Sekarang
+              Enquire Now
             </a>
           </div>
           <div className="flex items-center gap-3 md:hidden">
-            <a href="tel:+6285825326780" className="text-[#c0392b]">
+            <a href="tel:+442012345678" className="text-[#c0392b]">
               <Phone size={22} />
             </a>
             <button onClick={() => setMenuOpen(!menuOpen)}>
@@ -135,27 +135,27 @@ export default function KontakPage() {
         {menuOpen && (
           <div className="md:hidden bg-white border-t px-4 py-4 flex flex-col gap-4 text-sm font-medium text-gray-700">
             <a href="/" onClick={() => setMenuOpen(false)}>
-              Beranda
+              Home
             </a>
             <a href="/#packages" onClick={() => setMenuOpen(false)}>
-              Paket Umroh
+              Packages
             </a>
             <a href="/about" onClick={() => setMenuOpen(false)}>
-              Tentang Kami
+              About Us
             </a>
             <a
               href="/contact"
               onClick={() => setMenuOpen(false)}
               className="text-[#8B2070] font-bold"
             >
-              Kontak
+              Contact
             </a>
             <div className="pt-2 border-t">
               <a
                 href="/enquiry"
                 className="block bg-[#c0392b] text-white px-4 py-2.5 rounded text-sm font-semibold text-center"
               >
-                Konsultasi Sekarang
+                Enquire Now
               </a>
             </div>
           </div>
@@ -165,13 +165,14 @@ export default function KontakPage() {
       {/* HERO */}
       <section className="bg-[#1a1a2e] py-12 md:py-16 px-4 text-center">
         <p className="text-[#d4af37] font-semibold text-xs uppercase tracking-widest mb-3">
-          Hubungi Kami
+          Get In Touch
         </p>
         <h1 className="text-white text-3xl md:text-4xl font-bold mb-3">
-          Kami Siap Membantu Anda 🤲
+          We're Here to Help 🤲
         </h1>
         <p className="text-gray-400 max-w-lg mx-auto text-sm">
-          Punya pertanyaan tentang paket umroh, jadwal keberangkatan, fasilitas, atau ingin konsultasi langsung? Tim kami siap membantu.
+          Whether you have a question about packages, need help with a booking,
+          or just want to speak to an expert — we're ready.
         </p>
       </section>
 
@@ -179,32 +180,32 @@ export default function KontakPage() {
       <section className="bg-gray-50 py-8 px-4">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4">
           <a
-            href="tel:+6285825326780"
+            href="tel:+442012345678"
             className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex items-center gap-4 hover:shadow-md transition-shadow group"
           >
             <div className="w-12 h-12 rounded-xl bg-[#fef3f3] flex items-center justify-center flex-shrink-0">
               <Phone size={22} className="text-[#c0392b]" />
             </div>
             <div>
-              <p className="font-bold text-gray-900 text-sm">Hubungi Kami</p>
-              <p className="text-gray-500 text-xs mt-0.5">+62 858-2532-6780</p>
+              <p className="font-bold text-gray-900 text-sm">Call Us</p>
+              <p className="text-gray-500 text-xs mt-0.5">+44 20 1234 5678</p>
               <p className="text-[#c0392b] text-xs font-semibold mt-1 flex items-center gap-1">
-                Telepon Sekarang <ChevronRight size={11} />
+                Call Now <ChevronRight size={11} />
               </p>
             </div>
           </a>
           <a
-            href="mailto:info@jejakimani.id"
+            href="mailto:info@itimaar.co.uk"
             className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex items-center gap-4 hover:shadow-md transition-shadow"
           >
             <div className="w-12 h-12 rounded-xl bg-[#f3e8f5] flex items-center justify-center flex-shrink-0">
               <Mail size={22} className="text-[#8B2070]" />
             </div>
             <div>
-              <p className="font-bold text-gray-900 text-sm">Kirim Email</p>
-              <p className="text-gray-500 text-xs mt-0.5">info@jejakimani.id</p>
+              <p className="font-bold text-gray-900 text-sm">Email Us</p>
+              <p className="text-gray-500 text-xs mt-0.5">info@itimaar.co.uk</p>
               <p className="text-[#8B2070] text-xs font-semibold mt-1 flex items-center gap-1">
-                Kirim Email <ChevronRight size={11} />
+                Send Email <ChevronRight size={11} />
               </p>
             </div>
           </a>
@@ -216,12 +217,12 @@ export default function KontakPage() {
               <MessageSquare size={22} className="text-[#c8961a]" />
             </div>
             <div>
-              <p className="font-bold text-gray-900 text-sm">Konsultasi Paket</p>
+              <p className="font-bold text-gray-900 text-sm">Book Enquiry</p>
               <p className="text-gray-500 text-xs mt-0.5">
-                Dapatkan respons maksimal 24 jam
+                Get a quote in 24hrs
               </p>
               <p className="text-[#c8961a] text-xs font-semibold mt-1 flex items-center gap-1">
-                Konsultasi Sekarang <ChevronRight size={11} />
+                Enquire Now <ChevronRight size={11} />
               </p>
             </div>
           </a>
@@ -234,10 +235,10 @@ export default function KontakPage() {
           {/* Form */}
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-1">
-              Kirim Pesan kepada Kami
+              Send Us a Message
             </h2>
             <p className="text-gray-500 text-sm mb-6">
-              Kami akan menghubungi Anda kembali maksimal dalam 24 jam, insyaAllah.
+              We'll get back to you within 24 hours, inshAllah.
             </p>
 
             {submitted ? (
@@ -250,10 +251,10 @@ export default function KontakPage() {
                   />
                 </div>
                 <h3 className="font-bold text-gray-900 text-base mb-2">
-                  Pesan Berhasil Dikirim!
+                  Message Sent!
                 </h3>
                 <p className="text-gray-500 text-sm">
-                  Jazakumullah khair. Tim kami akan segera menghubungi Anda.
+                  JazakAllah Khair! We'll be in touch soon.
                 </p>
                 <button
                   onClick={() => {
@@ -268,7 +269,7 @@ export default function KontakPage() {
                   }}
                   className="mt-5 text-[#8B2070] text-sm font-semibold underline"
                 >
-                  Kirim pesan lain
+                  Send another message
                 </button>
               </div>
             ) : (
@@ -276,12 +277,12 @@ export default function KontakPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs text-gray-500 font-medium block mb-1">
-                      Nama Lengkap *
+                      Full Name *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Nama Anda"
+                      placeholder="Ahmed Ali"
                       className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070]"
                       value={form.name}
                       onChange={(e) => set("name", e.target.value)}
@@ -289,11 +290,11 @@ export default function KontakPage() {
                   </div>
                   <div>
                     <label className="text-xs text-gray-500 font-medium block mb-1">
-                      Nomor WhatsApp
+                      Phone
                     </label>
                     <input
                       type="tel"
-                      placeholder="+62 812..."
+                      placeholder="+44 7700..."
                       className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070]"
                       value={form.phone}
                       onChange={(e) => set("phone", e.target.value)}
@@ -302,12 +303,12 @@ export default function KontakPage() {
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 font-medium block mb-1">
-                    Alamat Email *
+                    Email Address *
                   </label>
                   <input
                     type="email"
                     required
-                    placeholder="emailanda@email.com"
+                    placeholder="your@email.com"
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070]"
                     value={form.email}
                     onChange={(e) => set("email", e.target.value)}
@@ -315,31 +316,31 @@ export default function KontakPage() {
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 font-medium block mb-1">
-                    Subjek
+                    Subject
                   </label>
                   <select
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
                     value={form.subject}
                     onChange={(e) => set("subject", e.target.value)}
                   >
-                    <option value="">Pilih topik...</option>
-                    <option>Pertanyaan Paket Umroh</option>
-                    <option>Pertanyaan Paket Haji</option>
-                    <option>Pendaftaran Grup/Keluarga</option>
-                    <option>Pertanyaan Dokumen/Visa</option>
-                    <option>Pemesanan yang Sudah Ada</option>
-                    <option>Pertanyaan Umum</option>
-                    <option>Keluhan / Masukan</option>
+                    <option value="">Select a topic...</option>
+                    <option>Umrah Package Enquiry</option>
+                    <option>Hajj Package Enquiry</option>
+                    <option>Group Booking</option>
+                    <option>Visa Query</option>
+                    <option>Existing Booking</option>
+                    <option>General Question</option>
+                    <option>Complaint / Feedback</option>
                   </select>
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 font-medium block mb-1">
-                    Pesan *
+                    Message *
                   </label>
                   <textarea
                     required
                     rows={5}
-                    placeholder="Bagaimana kami bisa membantu Anda?"
+                    placeholder="How can we help you today?"
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070] resize-none"
                     value={form.message}
                     onChange={(e) => set("message", e.target.value)}
@@ -366,7 +367,7 @@ export default function KontakPage() {
                     />
                   ) : (
                     <>
-                      <Send size={14} /> Kirim Pesan
+                      <Send size={14} /> Send Message
                     </>
                   )}
                 </button>
@@ -379,20 +380,20 @@ export default function KontakPage() {
             <div className="bg-[#1a1a2e] rounded-2xl p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Clock size={18} className="text-[#d4af37]" />
-                <h3 className="text-white font-bold text-sm">Jam Layanan</h3>
+                <h3 className="text-white font-bold text-sm">Opening Hours</h3>
               </div>
               <div className="space-y-2">
                 {[
-                  { day: "Senin – Jumat", hours: "09.00 – 17.00" },
-                  { day: "Sabtu", hours: "09.00 – 14.00" },
-                  { day: "Minggu", hours: "Tutup" },
-                  { day: "Hari Libur Nasional", hours: "Tutup" },
+                  { day: "Monday – Friday", hours: "9:00am – 6:00pm" },
+                  { day: "Saturday", hours: "10:00am – 4:00pm" },
+                  { day: "Sunday", hours: "Closed" },
+                  { day: "Bank Holidays", hours: "Closed" },
                 ].map((h, i) => (
                   <div key={i} className="flex justify-between text-sm">
                     <span className="text-gray-400">{h.day}</span>
                     <span
                       className={
-                        h.hours === "Tutup"
+                        h.hours === "Closed"
                           ? "text-gray-500"
                           : "text-white font-semibold"
                       }
@@ -404,10 +405,10 @@ export default function KontakPage() {
               </div>
               <div className="mt-4 pt-4 border-t border-white/10">
                 <p className="text-[#d4af37] text-xs font-semibold">
-                  📞 Selama musim Ramadhan dan keberangkatan padat:
+                  📞 During Hajj & Ramadan season:
                 </p>
                 <p className="text-gray-300 text-xs mt-1">
-                  Jam layanan dapat diperpanjang. Hubungi kami untuk informasi lebih lanjut.
+                  Extended hours available. Call us for details.
                 </p>
               </div>
             </div>
@@ -416,15 +417,15 @@ export default function KontakPage() {
               <div className="flex items-center gap-2 mb-3">
                 <Mail size={16} className="text-[#8B2070]" />
                 <h3 className="font-bold text-gray-900 text-sm">
-                  Kontak Email
+                  Email Departments
                 </h3>
               </div>
               <div className="space-y-2 text-sm">
                 {[
-                  { dept: "Pertanyaan Umum", email: "info@jejakimani.id" },
-                  { dept: "Paket Haji", email: "haji@jejakimani.id" },
-                  { dept: "Paket Umroh", email: "umroh@jejakimani.id" },
-                  { dept: "Layanan Dokumen/Visa", email: "dokumen@jejakimani.id" },
+                  { dept: "General Enquiries", email: "info@itimaar.co.uk" },
+                  { dept: "Hajj Packages", email: "hajj@itimaar.co.uk" },
+                  { dept: "Umrah Packages", email: "umrah@itimaar.co.uk" },
+                  { dept: "Visa Services", email: "visa@itimaar.co.uk" },
                 ].map((e, i) => (
                   <div key={i}>
                     <p className="text-gray-500 text-xs">{e.dept}</p>
@@ -447,10 +448,10 @@ export default function KontakPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8">
             <p className="text-[#8B2070] font-semibold text-xs uppercase tracking-widest mb-2">
-              Temukan Kami
+              Find Us
             </p>
             <h2 className="text-xl md:text-2xl font-bold text-gray-900">
-              Kanal Layanan Kami
+              Our UK Offices
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -511,21 +512,22 @@ export default function KontakPage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <div className="bg-white/10 rounded-lg p-2 inline-block">
             <span className="text-[#d4af37] font-bold text-lg tracking-wide">
-              Jejak Imani
+              I'TIMAAR
             </span>
           </div>
           <p className="text-center">
-            © 2026 Jejak Imani. Seluruh hak cipta dilindungi.
+            © 2025 I'timaar Travel Ltd. All rights reserved. Registered in
+            England & Wales.
           </p>
           <div className="flex gap-4">
             <a href="/" className="hover:text-[#d4af37]">
-              Beranda
+              Home
             </a>
             <a href="/about" className="hover:text-[#d4af37]">
-              Tentang Kami
+              About
             </a>
             <a href="/enquiry" className="hover:text-[#d4af37]">
-              Konsultasi
+              Enquire
             </a>
           </div>
         </div>

@@ -18,87 +18,87 @@ import {
 const milestones = [
   {
     year: "1985",
-    title: "Jejak Imani Hadir",
-    desc: "Berawal dari komitmen untuk membantu jamaah mendapatkan informasi perjalanan umroh yang lebih jelas, nyaman, dan mudah dipahami.",
+    title: "I'timaar Founded",
+    desc: "Started as a small family-run travel agency in East London, serving the local Muslim community.",
   },
   {
     year: "1993",
-    title: "Layanan Mulai Dikembangkan",
-    desc: "Fokus layanan diperkuat melalui penyusunan paket, konsultasi jamaah, dan pendampingan perjalanan yang lebih tertata.",
+    title: "ATOL & ABTA Accredited",
+    desc: "Received full ATOL and ABTA accreditation, cementing our commitment to fully protected travel.",
   },
   {
     year: "2001",
-    title: "Kepercayaan Jamaah Bertumbuh",
-    desc: "Semakin banyak calon jamaah membutuhkan informasi paket umroh yang transparan, mudah dibandingkan, dan sesuai kebutuhan keluarga.",
+    title: "10,000 Pilgrims Served",
+    desc: "A proud milestone — over 10,000 UK Muslims had trusted I'timaar for their sacred journey.",
   },
   {
     year: "2010",
-    title: "Akses Informasi Diperluas",
-    desc: "Informasi paket, jadwal, fasilitas, dan konsultasi dibuat lebih mudah dijangkau melalui kanal digital dan komunikasi langsung.",
+    title: "Expanded to 6 UK Cities",
+    desc: "Opened offices in London, Manchester, Birmingham, Bradford, Leicester and Edinburgh.",
   },
   {
     year: "2018",
-    title: "Penguatan Layanan Perjalanan",
-    desc: "Layanan diarahkan untuk membantu jamaah memahami pilihan penerbangan, akomodasi, transportasi, dan kebutuhan perjalanan ibadah.",
+    title: "IATA Certified",
+    desc: "Became IATA certified, allowing us to offer the very best airline fares directly to our customers.",
   },
   {
     year: "2024",
-    title: "Komitmen Berkelanjutan",
-    desc: "Jejak Imani terus berkomitmen menghadirkan pengalaman perjalanan ibadah yang lebih aman, nyaman, dan bernilai bagi jamaah.",
+    title: "50,000+ Happy Pilgrims",
+    desc: "Alhamdulillah — over 50,000 UK Muslims have completed Hajj or Umrah through I'timaar.",
   },
 ];
 
 const team = [
   {
-    name: "Pembimbing Ibadah",
-    role: "Pendamping Manasik dan Perjalanan",
-    initials: "PI",
+    name: "Sheikh Abdullah Hussain",
+    role: "Head of Hajj & Umrah Guidance",
+    initials: "AH",
     color: "#8B2070",
-    bio: "Membantu jamaah memahami rangkaian ibadah, adab perjalanan, dan persiapan spiritual sebelum berangkat ke Tanah Suci.",
+    bio: "Over 25 years of experience guiding pilgrims. A qualified Islamic scholar who has performed Hajj 18 times.",
   },
   {
-    name: "Admin Layanan Jamaah",
-    role: "Konsultasi dan Pelayanan Jamaah",
-    initials: "AJ",
+    name: "Sister Maryam Khan",
+    role: "Head of Customer Care",
+    initials: "MK",
     color: "#c0392b",
-    bio: "Siap membantu calon jamaah sejak konsultasi awal, pemilihan paket, kelengkapan informasi, hingga proses keberangkatan.",
+    bio: "15 years at I'timaar, ensuring every pilgrim feels supported from first enquiry to safe return home.",
   },
   {
-    name: "Konsultan Perjalanan",
-    role: "Perencanaan Paket Umroh",
-    initials: "KP",
+    name: "Brother Omar Siddiq",
+    role: "Senior Travel Consultant",
+    initials: "OS",
     color: "#c8961a",
-    bio: "Membantu jamaah memilih paket yang sesuai dengan jadwal, kebutuhan keluarga, fasilitas hotel, dan anggaran perjalanan.",
+    bio: "Specialist in bespoke and group packages. Personally performed Umrah 12 times and Hajj 4 times.",
   },
   {
-    name: "Tim Dokumen",
-    role: "Administrasi dan Kelengkapan Berkas",
-    initials: "TD",
+    name: "Sister Fatima Patel",
+    role: "Visa & Documentation Lead",
+    initials: "FP",
     color: "#1a6b4a",
-    bio: "Membantu pengecekan kelengkapan dokumen jamaah agar proses persiapan perjalanan berjalan lebih tertib dan lancar.",
+    bio: "Expert in Saudi visa regulations with a 99.8% visa approval rate for I'timaar customers.",
   },
 ];
 
 const values = [
   {
     icon: Heart,
-    title: "Keikhlasan",
-    desc: "Kami memandang pelayanan kepada jamaah sebagai amanah. Setiap jamaah dilayani dengan perhatian, kesabaran, dan kepedulian.",
+    title: "Sincerity (Ikhlas)",
+    desc: "We serve you as an act of worship. Every pilgrim is treated with the same care we would give our own family.",
   },
   {
     icon: Shield,
-    title: "Amanah",
-    desc: "Kami berkomitmen menyampaikan informasi paket, fasilitas, biaya, dan jadwal secara jelas agar jamaah merasa tenang.",
+    title: "Trust (Amanah)",
+    desc: "Your money and journey are in safe hands — ATOL, ABTA and IATA certified for your complete peace of mind.",
   },
   {
     icon: BookOpen,
-    title: "Ilmu",
-    desc: "Perjalanan ibadah bukan sekadar perjalanan fisik. Jamaah perlu memahami tata cara, adab, dan makna ibadah dengan baik.",
+    title: "Knowledge (Ilm)",
+    desc: "Our team includes qualified Islamic scholars to ensure your journey is spiritually correct and fulfilling.",
   },
   {
     icon: Users,
-    title: "Kebersamaan",
-    desc: "Kami ingin menjadi bagian dari perjalanan jamaah dalam meraih ibadah yang nyaman, tertata, dan penuh keberkahan.",
+    title: "Community (Ummah)",
+    desc: "We are proud to serve the British Muslim community and give back through charitable initiatives each year.",
   },
 ];
 
@@ -113,44 +113,44 @@ export default function AboutPage() {
           <a href="/">
             <div className="bg-[#1a1a2e] rounded-lg p-2">
               <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                Jejak Imani
+                I'TIMAAR
               </span>
             </div>
           </a>
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
             <a href="/" className="hover:text-[#c0392b] transition-colors">
-              Beranda
+              Home
             </a>
             <a
               href="/#packages"
               className="hover:text-[#c0392b] transition-colors"
             >
-              Paket Umroh
+              Packages
             </a>
             <a href="/about" className="text-[#8B2070] font-bold">
-              Tentang Kami
+              About Us
             </a>
             <a
               href="/contact"
               className="hover:text-[#c0392b] transition-colors"
             >
-              Kontak
+              Contact
             </a>
           </nav>
           <div className="hidden md:flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm text-gray-700">
               <Phone size={16} className="text-[#c0392b]" />
-              <span className="font-semibold">+62 858-2532-6780</span>
+              <span className="font-semibold">+44 20 1234 5678</span>
             </div>
             <a
               href="/enquiry"
               className="bg-[#c0392b] text-white px-4 py-2 rounded text-sm font-semibold hover:bg-[#a93226] transition-colors"
             >
-              Konsultasi Sekarang
+              Enquire Now
             </a>
           </div>
           <div className="flex items-center gap-3 md:hidden">
-            <a href="tel:+6285825326780" className="text-[#c0392b]">
+            <a href="tel:+442012345678" className="text-[#c0392b]">
               <Phone size={22} />
             </a>
             <button onClick={() => setMenuOpen(!menuOpen)}>
@@ -161,27 +161,27 @@ export default function AboutPage() {
         {menuOpen && (
           <div className="md:hidden bg-white border-t px-4 py-4 flex flex-col gap-4 text-sm font-medium text-gray-700">
             <a href="/" onClick={() => setMenuOpen(false)}>
-              Beranda
+              Home
             </a>
             <a href="/#packages" onClick={() => setMenuOpen(false)}>
-              Paket Umroh
+              Packages
             </a>
             <a
               href="/about"
               onClick={() => setMenuOpen(false)}
               className="text-[#8B2070] font-bold"
             >
-              Tentang Kami
+              About Us
             </a>
             <a href="/contact" onClick={() => setMenuOpen(false)}>
-              Kontak
+              Contact
             </a>
             <div className="pt-2 border-t">
               <a
                 href="/enquiry"
                 className="block bg-[#c0392b] text-white px-4 py-2.5 rounded text-sm font-semibold text-center"
               >
-                Konsultasi Sekarang
+                Enquire Now
               </a>
             </div>
           </div>
@@ -197,14 +197,15 @@ export default function AboutPage() {
         }}
       >
         <p className="text-[#d4af37] font-semibold text-xs tracking-widest uppercase mb-3">
-          Cerita Kami
+          Our Story
         </p>
         <h1 className="text-white text-3xl md:text-5xl font-bold leading-tight mb-4">
-          Mendampingi Perjalanan Ibadah
-          <br className="hidden md:block" /> Dengan Amanah dan Kepedulian
+          39 Years Guiding Pilgrims
+          <br className="hidden md:block" /> With Heart & Honour
         </h1>
         <p className="text-gray-300 max-w-xl mx-auto text-sm md:text-base">
-          Jejak Imani hadir untuk membantu jamaah merencanakan perjalanan umroh dengan informasi yang jelas, layanan yang nyaman, dan pendampingan yang penuh kepedulian.
+          Since 1985, I'timaar has been the trusted partner of UK Muslims on
+          their most sacred journey — Hajj and Umrah.
         </p>
       </section>
 
@@ -212,10 +213,10 @@ export default function AboutPage() {
       <section className="bg-[#1a1a2e] py-10">
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
-            { value: "Amanah", label: "Dasar Pelayanan" },
-            { value: "Responsif", label: "Konsultasi Jamaah" },
-            { value: "Terarah", label: "Informasi Paket" },
-            { value: "Nyaman", label: "Pendampingan Ibadah" },
+            { value: "1985", label: "Established" },
+            { value: "50,000+", label: "Pilgrims Served" },
+            { value: "39+", label: "Years Experience" },
+            { value: "4.9★", label: "Average Rating" },
           ].map((s, i) => (
             <div key={i}>
               <p className="text-[#d4af37] text-2xl md:text-3xl font-extrabold">
@@ -233,19 +234,29 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
               <p className="text-[#8B2070] font-semibold text-xs uppercase tracking-widest mb-3">
-                Siapa Kami
+                Who We Are
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                Layanan Perjalanan Ibadah yang Dibangun dengan Amanah
+                A Family Business Built on Faith
               </h2>
               <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                Jejak Imani hadir untuk membantu calon jamaah memahami dan memilih layanan perjalanan umroh dengan lebih mudah. Kami menyadari bahwa perjalanan ke Tanah Suci bukan hanya soal keberangkatan, tetapi juga tentang kesiapan hati, kenyamanan, dan ketenangan sejak proses awal.
+                I'timaar was founded in 1985 by Haji Mohammed Iqbal, a devoted
+                Muslim who saw the struggles UK pilgrims faced when trying to
+                book Hajj and Umrah. His vision was simple: treat every pilgrim
+                as family, handle every detail with care, and make the journey
+                to the Holy Land accessible for all.
               </p>
               <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                Karena itu, kami berupaya menghadirkan informasi paket yang jelas, pilihan fasilitas yang mudah dipahami, serta komunikasi yang responsif bagi jamaah. Setiap pertanyaan, kebutuhan, dan kekhawatiran jamaah kami pandang sebagai bagian penting dari proses pelayanan.
+                Nearly four decades later, that same spirit lives on. Today,
+                I'timaar is run by Haji Mohammed's children and grandchildren —
+                a true family business — supported by a dedicated team of travel
+                consultants, Islamic scholars, and visa specialists.
               </p>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Bagi kami, umroh adalah perjalanan ibadah yang memiliki nilai spiritual tinggi. Oleh sebab itu, Jejak Imani berkomitmen membantu jamaah merencanakan perjalanan dengan lebih tertata, amanah, dan nyaman.
+                We are fully ATOL, ABTA and IATA accredited, meaning your money
+                and your journey are 100% protected. But more than that, we
+                understand the spiritual weight of this journey — and we treat
+                it with the reverence it deserves.
               </p>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-lg">
@@ -264,10 +275,10 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
             <p className="text-[#c0392b] font-semibold text-xs uppercase tracking-widest mb-2">
-              Nilai yang Menggerakkan Kami
+              What Drives Us
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Nilai-Nilai Kami
+              Our Values
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -298,10 +309,10 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-10">
             <p className="text-[#8B2070] font-semibold text-xs uppercase tracking-widest mb-2">
-              Perjalanan Kami
+              Our Journey
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Langkah dan Komitmen Kami
+              39 Years of Milestones
             </h2>
           </div>
           <div className="relative">
@@ -345,7 +356,7 @@ export default function AboutPage() {
               The People Behind I'timaar
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Tim Kami
+              Meet Our Team
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
@@ -377,24 +388,24 @@ export default function AboutPage() {
       <section className="py-12 bg-[#1a1a2e] px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[#d4af37] font-semibold text-xs uppercase tracking-widest mb-3">
-            Komitmen Layanan
+            Fully Accredited
           </p>
           <h2 className="text-white text-xl md:text-3xl font-bold mb-8">
-            Perjalanan Ibadah Lebih Tenang
+            You're in Safe Hands
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             {[
               {
-                code: "Amanah",
-                desc: "Informasi paket dan fasilitas disampaikan dengan jelas agar jamaah dapat mengambil keputusan dengan tenang.",
+                code: "ATOL",
+                desc: "Air Travel Organiser's Licence — your money is 100% protected by UK law.",
               },
               {
-                code: "Transparan",
-                desc: "Detail perjalanan, jadwal, hotel, dan layanan dijelaskan secara terbuka sesuai pilihan paket yang tersedia.",
+                code: "ABTA",
+                desc: "Association of British Travel Agents — the highest standard of UK travel.",
               },
               {
-                code: "Peduli",
-                desc: "Jamaah dibantu sejak konsultasi awal hingga proses persiapan keberangkatan dengan pelayanan yang responsif.",
+                code: "IATA",
+                desc: "International Air Transport Association — direct access to the best fares.",
               },
             ].map((c, i) => (
               <div
@@ -416,26 +427,27 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-14 px-4 bg-white text-center">
         <p className="text-[#8B2070] font-semibold text-xs uppercase tracking-widest mb-3">
-          Siap Memulai Perjalanan?
+          Ready to Begin?
         </p>
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-          Mulai Rencanakan Umroh Anda Hari Ini
+          Start Your Sacred Journey Today
         </h2>
         <p className="text-gray-500 text-sm max-w-md mx-auto mb-8">
-          Hubungi tim Jejak Imani untuk konsultasi paket, jadwal, fasilitas, dan kebutuhan perjalanan umroh Anda.
+          Speak to one of our experts and let us plan the pilgrimage of a
+          lifetime for you.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
             href="/#packages"
             className="bg-[#8B2070] hover:bg-[#701a5a] text-white font-bold px-8 py-3.5 rounded-xl transition-colors"
           >
-            View Our Paket Umroh
+            View Our Packages
           </a>
           <a
             href="/contact"
             className="border-2 border-[#8B2070] text-[#8B2070] font-bold px-8 py-3.5 rounded-xl hover:bg-[#8B2070] hover:text-white transition-colors"
           >
-            Kontak Us
+            Contact Us
           </a>
         </div>
       </section>
@@ -445,7 +457,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <div className="bg-white/10 rounded-lg p-2 inline-block">
             <span className="text-[#d4af37] font-bold text-lg tracking-wide">
-              Jejak Imani
+              I'TIMAAR
             </span>
           </div>
           <p className="text-center">
@@ -454,13 +466,13 @@ export default function AboutPage() {
           </p>
           <div className="flex gap-4">
             <a href="/" className="hover:text-[#d4af37]">
-              Beranda
+              Home
             </a>
             <a href="/contact" className="hover:text-[#d4af37]">
-              Kontak
+              Contact
             </a>
             <a href="/enquiry" className="hover:text-[#d4af37]">
-              Konsultasi
+              Enquire
             </a>
           </div>
         </div>
