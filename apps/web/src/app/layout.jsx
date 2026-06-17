@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import SmartWhatsApp from "../components/SmartWhatsApp";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -15,6 +15,7 @@ export default function RootLayout({children}) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
+      <SmartWhatsApp />
     </QueryClientProvider>
   );
 }
