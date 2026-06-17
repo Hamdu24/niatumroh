@@ -1,25 +1,29 @@
-"use client";
-
-import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { getWhatsAppLink } from "../utils/whatsapp";
 
 export default function SmartWhatsApp() {
-  const pathname = usePathname();
+  const [waLink, setWaLink] = useState("");
 
-  // Logika mendeteksi halaman secara otomatis
-  let pageName = "home";
-  let detail = "";
+  useEffect(() => {
+    // Membaca halaman langsung dari browser jemaah (Sangat aman untuk Vite)
+    const pathname = window.location.pathname;
 
-  if (pathname.includes("/packages/")) {
-    pageName = "detail-paket";
-    // Mengambil nama paket dari URL (misal: /packages/umroh-ramadhan -> umroh-ramadhan)
-    const slug = pathname.split("/").pop();
-    detail = slug ? slug.replace(/-/g, " ") : "Paket Umroh";
-  } else if (pathname === "/contact") {
-    pageName = "contact";
-  }
+    let pageName = "home";
+    let detail = "";
 
-  const waLink = getWhatsAppLink(pageName, detail);
+    if (pathname.includes("/packages/")) {
+      pageName = "detail-paket";
+      const slug = pathname.split("/").pop();
+      detail = slug ? slug.replace(/-/g, " ") : "Paket Umroh";
+    } else if (pathname.includes("/contact") || pathname.includes("/kontak")) {
+      pageName = "contact";
+    }
+
+    const link = getWhatsAppLink(pageName, detail);
+    setWaLink(link);
+  }, []);
+
+  if (!waLink) return null;
 
   return (
     <a
@@ -44,7 +48,6 @@ export default function SmartWhatsApp() {
         fontSize: "14px"
       }}
     >
-      {/* Icon WA Sederhana */}
       <span style={{ fontSize: "18px" }}>💬</span>
       Chat WhatsApp
     </a>
