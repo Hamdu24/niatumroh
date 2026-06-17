@@ -156,5 +156,5 @@ export default function UmrohPage() {
     </div>
   );
 }
-<FloatingWhatsApp pageTitle="Paket Umroh" />
+
 

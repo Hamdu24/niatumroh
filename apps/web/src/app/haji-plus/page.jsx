@@ -88,5 +88,5 @@ export default function HajiPlusPage() {
     </div>
   );
 }
-<FloatingWhatsApp pageTitle="Paket Haji Plus" />
+
 
