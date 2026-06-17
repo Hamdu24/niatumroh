@@ -488,16 +488,24 @@ export default function AdminPackagesPage() {
                     </div>
                     <div>
                       <label className="text-xs text-gray-500 font-medium block mb-1">
-                        Tag / Badge
+                             Bulan Keberangkatan
                       </label>
-                      <input
+
+                      <select
                         className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#8B2070]"
-                        placeholder="Popular / Best Value / Premium"
                         value={editPkg.tag}
                         onChange={(e) =>
                           setEditPkg({ ...editPkg, tag: e.target.value })
                         }
-                      />
+                      >
+                        <option value="">Pilih Bulan</option>
+                        <option value="Desember">Desember</option>
+                        <option value="Januari">Januari</option>
+                        <option value="Februari">Februari</option>
+                        <option value="Maret">Maret</option>
+                        <option value="Ramadhan">Ramadhan</option>
+                        <option value="Syawal">Syawal</option>
+                      </select>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
@@ -800,3 +808,5 @@ export default function AdminPackagesPage() {
     </div>
   );
 }
+
+

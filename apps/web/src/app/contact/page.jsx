@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "../../components/Navbar";
 import { useState } from "react";
 import {
   Phone,
@@ -85,82 +86,7 @@ export default function KontakPage() {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-800">
       {/* HEADER */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <a href="/">
-            <div className="bg-[#1a1a2e] rounded-lg p-2">
-              <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                Jejak Imani
-              </span>
-            </div>
-          </a>
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-            <a href="/" className="hover:text-[#c0392b] transition-colors">
-              Beranda
-            </a>
-            <a
-              href="/#packages"
-              className="hover:text-[#c0392b] transition-colors"
-            >
-              Paket Umroh
-            </a>
-            <a href="/about" className="hover:text-[#c0392b] transition-colors">
-              Tentang Kami
-            </a>
-            <a href="/contact" className="text-[#8B2070] font-bold">
-              Kontak
-            </a>
-          </nav>
-          <div className="hidden md:flex items-center gap-4">
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              <Phone size={16} className="text-[#c0392b]" />
-              <span className="font-semibold">+62 858-2532-6780</span>
-            </div>
-            <a
-              href="/enquiry"
-              className="bg-[#c0392b] text-white px-4 py-2 rounded text-sm font-semibold hover:bg-[#a93226] transition-colors"
-            >
-              Konsultasi Sekarang
-            </a>
-          </div>
-          <div className="flex items-center gap-3 md:hidden">
-            <a href="tel:+6285825326780" className="text-[#c0392b]">
-              <Phone size={22} />
-            </a>
-            <button onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-        {menuOpen && (
-          <div className="md:hidden bg-white border-t px-4 py-4 flex flex-col gap-4 text-sm font-medium text-gray-700">
-            <a href="/" onClick={() => setMenuOpen(false)}>
-              Beranda
-            </a>
-            <a href="/#packages" onClick={() => setMenuOpen(false)}>
-              Paket Umroh
-            </a>
-            <a href="/about" onClick={() => setMenuOpen(false)}>
-              Tentang Kami
-            </a>
-            <a
-              href="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="text-[#8B2070] font-bold"
-            >
-              Kontak
-            </a>
-            <div className="pt-2 border-t">
-              <a
-                href="/enquiry"
-                className="block bg-[#c0392b] text-white px-4 py-2.5 rounded text-sm font-semibold text-center"
-              >
-                Konsultasi Sekarang
-              </a>
-            </div>
-          </div>
-        )}
-      </header>
+      <Navbar />
 
       {/* HERO */}
       <section className="bg-[#1a1a2e] py-12 md:py-16 px-4 text-center">
@@ -539,3 +465,5 @@ export default function KontakPage() {
     </div>
   );
 }
+
+

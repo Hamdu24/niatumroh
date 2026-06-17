@@ -9,3 +9,5 @@ export default function Page() {
   }, []);
   return <div>async effect error</div>;
 }
+
+

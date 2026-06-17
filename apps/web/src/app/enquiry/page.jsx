@@ -1,533 +1,196 @@
 "use client";
+
 import { useState } from "react";
-import {
-  Phone,
-  ChevronLeft,
-  Check,
-  Send,
-  User,
-  Mail,
-  PhoneCall,
-  Calendar,
-  Users,
-  Plane,
-  PoundSterling,
-  MessageSquare,
-  Shield,
-  Award,
-} from "lucide-react";
-import { packages } from "@/data/packages";
-
-const airports = [
-  "Jakarta Soekarno-Hatta (CGK)",
-  "Surabaya Juanda (SUB)",
-  "Medan Kualanamu (KNO)",
-  "Makassar Sultan Hasanuddin (UPG)",
-  "Yogyakarta International Airport (YIA)",
-  "Semarang Ahmad Yani (SRG)",
-  "Denpasar Ngurah Rai (DPS)",
-];
-
-const budgets = [
-  "Di bawah Rp25 juta per orang",
-  "Rp25 juta – Rp30 juta per orang",
-  "Rp30 juta – Rp40 juta per orang",
-  "Rp40 juta – Rp55 juta per orang",
-  "Di atas Rp55 juta per orang",
-  "Fleksibel / Belum yakin",
-];
-
-const departures = [
-  "Januari 2026",
-  "Februari 2026",
-  "Maret 2026",
-  "Ramadhan 2026",
-  "Mei 2026",
-  "Juni 2026",
-  "Juli 2026",
-  "Haji 2026",
-  "Fleksibel",
-];
+import Navbar from "../../components/Navbar";
+import { Send, Phone, CheckCircle } from "lucide-react";
 
 export default function EnquiryPage() {
-  const [step, setStep] = useState(1);
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [form, setForm] = useState({
-    full_name: "",
-    email: "",
+    name: "",
     phone: "",
-    package_name: "",
-    departure: "",
-    adults: "2",
-    children: "0",
-    airport: "",
-    budget: "",
+    email: "",
     message: "",
   });
 
-  const set = (field, value) => setForm((f) => ({ ...f, [field]: value }));
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
 
-  const step1Valid =
-    form.full_name.trim() && form.email.trim() && form.phone.trim();
-  const step2Valid = form.adults;
+  const handleChange = (key, value) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
 
-  const handleSubmit = async () => {
+  const isValid =
+    form.name.trim() && form.phone.trim() && form.message.trim();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!isValid) return;
+
     setLoading(true);
     setError(null);
+
     try {
       const res = await fetch("/api/enquiries", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          ...form,
-          adults: parseInt(form.adults) || 1,
-          children: parseInt(form.children) || 0,
+          full_name: form.name,
+          phone: form.phone,
+          email: form.email,
+          message: form.message,
+          status: "new",
         }),
       });
-      if (!res.ok) throw new Error("Failed to submit");
-      setSubmitted(true);
+
+      if (!res.ok) {
+        throw new Error("Failed to submit enquiry");
+      }
+
+      setSuccess(true);
+      setForm({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
     } catch (err) {
       console.error(err);
-      setError("Terjadi kendala. Silakan coba lagi atau hubungi kami langsung.");
+      setError("Gagal mengirim data. Silakan coba lagi atau hubungi WhatsApp.");
     } finally {
       setLoading(false);
     }
   };
 
-  if (submitted) {
-    return (
-      <div className="min-h-screen bg-white font-sans flex flex-col">
-        <header className="bg-white shadow-sm px-4 py-3 flex items-center justify-between">
-          <a href="/">
-            <div className="bg-[#1a1a2e] rounded-lg p-2">
-              <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                Jejak Imani
-              </span>
-            </div>
-          </a>
-          <a href="tel:+6285825326780" className="text-[#c0392b]">
-            <Phone size={20} />
-          </a>
-        </header>
-        <div className="flex-1 flex flex-col items-center justify-center px-4 text-center">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-5">
-            <Check size={36} className="text-green-600" strokeWidth={2.5} />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Permintaan Konsultasi Diterima! 🤲
-          </h2>
-          <p className="text-gray-500 text-sm max-w-sm mb-2">
-            Jazakumullah khair, <strong>{form.full_name}</strong>! Tim Jejak Imani akan menghubungi Anda maksimal dalam{" "}
-            <strong>24 hours</strong>.
-          </p>
-          <p className="text-gray-400 text-xs mb-8">
-            Konfirmasi telah dikirim ke <strong>{form.email}</strong>
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs">
+  return (
+    <div className="min-h-screen bg-gray-50 font-sans text-gray-800">
+      <Navbar />
+
+      <section className="bg-[#1a1a2e] text-white py-16 text-center px-4">
+        <h1 className="text-3xl md:text-5xl font-bold">
+          Konsultasi Paket
+        </h1>
+        <p className="text-gray-300 mt-3 text-sm md:text-base">
+          Isi data berikut, lalu tim Jejak Imani akan menghubungi Anda.
+        </p>
+      </section>
+
+      <section className="max-w-3xl mx-auto px-4 py-12">
+        {success ? (
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center">
+            <CheckCircle className="mx-auto text-green-600 mb-4" size={52} />
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Enquiry Berhasil Dikirim
+            </h2>
+            <p className="text-gray-500 text-sm mb-6">
+              Terima kasih. Tim kami akan segera menghubungi Anda.
+            </p>
             <a
               href="/"
-              className="flex-1 border-2 border-[#8B2070] text-[#8B2070] py-3 rounded-xl text-sm font-bold text-center"
+              className="inline-block bg-[#8B2070] text-white px-6 py-3 rounded-xl font-bold text-sm"
             >
               Kembali ke Beranda
             </a>
-            <a
-              href="/#packages"
-              className="flex-1 bg-[#8B2070] text-white py-3 rounded-xl text-sm font-bold text-center"
-            >
-              Lihat Paket
-            </a>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-          <a href="/">
-            <div className="bg-[#1a1a2e] rounded-lg p-2">
-              <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                Jejak Imani
-              </span>
-            </div>
-          </a>
-          <div className="hidden md:flex items-center gap-2 text-sm text-gray-700">
-            <Phone size={15} className="text-[#c0392b]" />
-            <span className="font-semibold">+62 858-2532-6780</span>
-          </div>
-          <a href="tel:+6285825326780" className="md:hidden text-[#c0392b]">
-            <Phone size={20} />
-          </a>
-        </div>
-      </header>
-
-      <div className="max-w-2xl mx-auto px-4 py-8">
-        {/* Page title */}
-        <div className="mb-6">
-          <a
-            href="/#packages"
-            className="inline-flex items-center gap-1 text-sm text-[#8B2070] font-semibold mb-3"
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 space-y-4"
           >
-            <ChevronLeft size={16} /> Kembali ke Paket
-          </a>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-            Rencanakan Perjalanan Ibadah Anda
-          </h1>
-          <p className="text-gray-500 text-sm mt-1">
-            Isi data berikut, lalu tim kami akan menghubungi Anda maksimal dalam 24 jam.
-          </p>
-        </div>
-
-        {/* Step indicator */}
-        <div className="flex items-center gap-2 mb-6">
-          {[1, 2, 3].map((s) => (
-            <div key={s} className="flex items-center gap-2 flex-1">
-              <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-colors"
-                style={{
-                  backgroundColor: step >= s ? "#8B2070" : "#e5e7eb",
-                  color: step >= s ? "#fff" : "#9ca3af",
-                }}
-              >
-                {step > s ? <Check size={13} strokeWidth={3} /> : s}
-              </div>
-              <span
-                className="text-xs font-medium hidden sm:block"
-                style={{ color: step >= s ? "#8B2070" : "#9ca3af" }}
-              >
-                {s === 1
-                  ? "Data Diri"
-                  : s === 2
-                    ? "Info Perjalanan"
-                    : "Pesan Akhir"}
-              </span>
-              {s < 3 && (
-                <div
-                  className="flex-1 h-0.5 ml-1"
-                  style={{ backgroundColor: step > s ? "#8B2070" : "#e5e7eb" }}
-                />
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* STEP 1: Personal Details */}
-        {step === 1 && (
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-4">
-            <h2 className="font-bold text-gray-800 text-base flex items-center gap-2">
-              <User size={18} className="text-[#8B2070]" /> Data Kontak Anda
-            </h2>
             <div>
-              <label className="text-xs text-gray-500 font-medium block mb-1">
+              <label className="text-sm font-semibold text-gray-700">
                 Nama Lengkap *
               </label>
               <input
                 type="text"
-                placeholder="Contoh: Ahmad Ali"
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070]"
-                value={form.full_name}
-                onChange={(e) => set("full_name", e.target.value)}
+                value={form.name}
+                onChange={(e) => handleChange("name", e.target.value)}
+                className="w-full mt-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
+                placeholder="Nama Anda"
               />
             </div>
+
             <div>
-              <label className="text-xs text-gray-500 font-medium block mb-1">
-                Alamat Email *
-              </label>
-              <input
-                type="email"
-                placeholder="emailanda@email.com"
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070]"
-                value={form.email}
-                onChange={(e) => set("email", e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="text-xs text-gray-500 font-medium block mb-1">
+              <label className="text-sm font-semibold text-gray-700">
                 Nomor WhatsApp *
               </label>
               <input
                 type="tel"
-                placeholder="+62 812 0000 0000"
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070]"
                 value={form.phone}
-                onChange={(e) => set("phone", e.target.value)}
+                onChange={(e) => handleChange("phone", e.target.value)}
+                className="w-full mt-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
+                placeholder="+62 812..."
               />
             </div>
-            <button
-              onClick={() => setStep(2)}
-              disabled={!step1Valid}
-              className="w-full py-3.5 rounded-xl text-sm font-bold transition-colors"
-              style={{
-                backgroundColor: step1Valid ? "#8B2070" : "#e5e7eb",
-                color: step1Valid ? "#fff" : "#9ca3af",
-              }}
-            >
-              Lanjut →
-            </button>
-          </div>
-        )}
 
-        {/* STEP 2: Info Perjalanan */}
-        {step === 2 && (
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-4">
-            <h2 className="font-bold text-gray-800 text-base flex items-center gap-2">
-              <Plane size={18} className="text-[#8B2070]" /> Preferensi Perjalanan Anda
-            </h2>
             <div>
-              <label className="text-xs text-gray-500 font-medium block mb-1">
-                Paket yang Diminati
+              <label className="text-sm font-semibold text-gray-700">
+                Email
               </label>
-              <select
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
-                value={form.package_name}
-                onChange={(e) => set("package_name", e.target.value)}
-              >
-                <option value="">Apa saja / Belum yakin</option>
-                {packages.map((p) => (
-                  <option key={p.id} value={p.title}>
-                    {p.title} — {p.price}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-xs text-gray-500 font-medium block mb-1">
-                  Jumlah Dewasa *
-                </label>
-                <select
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
-                  value={form.adults}
-                  onChange={(e) => set("adults", e.target.value)}
-                >
-                  {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"].map(
-                    (n) => (
-                      <option key={n}>{n}</option>
-                    ),
-                  )}
-                </select>
-              </div>
-              <div>
-                <label className="text-xs text-gray-500 font-medium block mb-1">
-                  Jumlah Anak
-                </label>
-                <select
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
-                  value={form.children}
-                  onChange={(e) => set("children", e.target.value)}
-                >
-                  {["0", "1", "2", "3", "4", "5+"].map((n) => (
-                    <option key={n}>{n}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div>
-              <label className="text-xs text-gray-500 font-medium block mb-1">
-                Perkiraan Keberangkatan
-              </label>
-              <select
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
-                value={form.departure}
-                onChange={(e) => set("departure", e.target.value)}
-              >
-                <option value="">Pilih bulan...</option>
-                {departures.map((d) => (
-                  <option key={d}>{d}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="text-xs text-gray-500 font-medium block mb-1">
-                Bandara Keberangkatan
-              </label>
-              <select
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
-                value={form.airport}
-                onChange={(e) => set("airport", e.target.value)}
-              >
-                <option value="">Pilih bandara...</option>
-                {airports.map((a) => (
-                  <option key={a}>{a}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="text-xs text-gray-500 font-medium block mb-1">
-                Anggaran per Orang
-              </label>
-              <select
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
-                value={form.budget}
-                onChange={(e) => set("budget", e.target.value)}
-              >
-                <option value="">Pilih anggaran...</option>
-                {budgets.map((b) => (
-                  <option key={b}>{b}</option>
-                ))}
-              </select>
-            </div>
-            <div className="flex gap-3 pt-1">
-              <button
-                onClick={() => setStep(1)}
-                className="flex-1 py-3.5 rounded-xl text-sm font-bold border-2 border-gray-200 text-gray-500 hover:border-gray-300 transition-colors"
-              >
-                ← Kembali
-              </button>
-              <button
-                onClick={() => setStep(3)}
-                disabled={!step2Valid}
-                className="flex-1 py-3.5 rounded-xl text-sm font-bold transition-colors"
-                style={{ backgroundColor: "#8B2070", color: "#fff" }}
-              >
-                Lanjut →
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* STEP 3: Message + Review + Submit */}
-        {step === 3 && (
-          <div className="space-y-4">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-4">
-              <h2 className="font-bold text-gray-800 text-base flex items-center gap-2">
-                <MessageSquare size={18} className="text-[#8B2070]" /> Ada Informasi Tambahan?
-              </h2>
-              <div>
-                <label className="text-xs text-gray-500 font-medium block mb-1">
-                  Kebutuhan Khusus atau Pertanyaan
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="Contoh: membutuhkan kursi roda, preferensi hotel tertentu, keberangkatan rombongan, kebutuhan makanan khusus..."
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] focus:ring-1 focus:ring-[#8B2070] resize-none"
-                  value={form.message}
-                  onChange={(e) => set("message", e.target.value)}
-                />
-              </div>
+              <input
+                type="email"
+                value={form.email}
+                onChange={(e) => handleChange("email", e.target.value)}
+                className="w-full mt-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070]"
+                placeholder="emailanda@email.com"
+              />
             </div>
 
-            {/* Summary card */}
-            <div className="bg-[#f3e8f5] rounded-2xl p-4 border border-[#dbb8e0]">
-              <p className="text-[#8B2070] font-bold text-sm mb-3">
-                📋 Ringkasan Konsultasi Anda
-              </p>
-              <div className="space-y-1.5 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Nama</span>
-                  <span className="font-semibold text-gray-800">
-                    {form.full_name}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Email</span>
-                  <span className="font-semibold text-gray-800 text-right max-w-[55%] break-all">
-                    {form.email}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Nomor WhatsApp</span>
-                  <span className="font-semibold text-gray-800">
-                    {form.phone}
-                  </span>
-                </div>
-                {form.package_name && (
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Paket</span>
-                    <span className="font-semibold text-gray-800 text-right max-w-[55%]">
-                      {form.package_name}
-                    </span>
-                  </div>
-                )}
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Jamaah</span>
-                  <span className="font-semibold text-gray-800">
-                    {form.adults} dewasa
-                    {form.children !== "0"
-                      ? `, ${form.children} anak`
-                      : ""}
-                  </span>
-                </div>
-                {form.departure && (
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Keberangkatan</span>
-                    <span className="font-semibold text-gray-800">
-                      {form.departure}
-                    </span>
-                  </div>
-                )}
-                {form.airport && (
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Bandara</span>
-                    <span className="font-semibold text-gray-800 text-right max-w-[55%]">
-                      {form.airport}
-                    </span>
-                  </div>
-                )}
-                {form.budget && (
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Anggaran</span>
-                    <span className="font-semibold text-gray-800 text-right max-w-[55%]">
-                      {form.budget}
-                    </span>
-                  </div>
-                )}
-              </div>
+            <div>
+              <label className="text-sm font-semibold text-gray-700">
+                Pesan *
+              </label>
+              <textarea
+                rows={5}
+                value={form.message}
+                onChange={(e) => handleChange("message", e.target.value)}
+                className="w-full mt-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B2070] resize-none"
+                placeholder="Saya ingin konsultasi paket umroh..."
+              />
             </div>
 
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-red-600 text-sm">
+              <div className="bg-red-50 border border-red-200 text-red-600 text-sm rounded-xl p-3">
                 {error}
               </div>
             )}
 
-            <div className="flex gap-3">
-              <button
-                onClick={() => setStep(2)}
-                className="flex-1 py-3.5 rounded-xl text-sm font-bold border-2 border-gray-200 text-gray-500 hover:border-gray-300 transition-colors"
-              >
-                ← Kembali
-              </button>
-              <button
-                onClick={handleSubmit}
-                disabled={loading}
-                className="flex-1 py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-colors"
-                style={{ backgroundColor: "#c8961a", color: "#fff" }}
-              >
-                {loading ? (
-                  <span className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-                ) : (
-                  <>
-                    <Send size={14} /> Kirim Konsultasi
-                  </>
-                )}
-              </button>
-            </div>
-
-            {/* Trust badges */}
-            <div className="flex flex-wrap justify-center gap-4 pt-2 pb-4">
-              {[
-                { icon: Shield, label: "Informasi Aman" },
-                { icon: Award, label: "Layanan Terpercaya" },
-                { icon: PhoneCall, label: "Respons 24 Jam" },
-              ].map((b, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-1.5 text-gray-500 text-xs"
-                >
-                  <b.icon size={13} className="text-[#8B2070]" />
-                  {b.label}
-                </div>
-              ))}
-            </div>
-          </div>
+            <button
+              type="submit"
+              disabled={loading || !isValid}
+              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold transition"
+              style={{
+                backgroundColor: isValid ? "#8B2070" : "#e5e7eb",
+                color: isValid ? "#fff" : "#9ca3af",
+              }}
+            >
+              {loading ? "Mengirim..." : (
+                <>
+                  <Send size={16} />
+                  Kirim Konsultasi
+                </>
+              )}
+            </button>
+          </form>
         )}
-      </div>
+      </section>
+
+      <section className="text-center pb-12 px-4">
+        <p className="text-gray-500 text-sm mb-3">
+          Ingin lebih cepat? Hubungi kami langsung melalui WhatsApp.
+        </p>
+        <a
+          href="https://wa.me/6285825326780"
+          className="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-bold text-sm"
+        >
+          <Phone size={18} />
+          Chat WhatsApp
+        </a>
+      </section>
     </div>
   );
 }
+

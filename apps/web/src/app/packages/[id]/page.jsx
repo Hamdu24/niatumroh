@@ -1,5 +1,5 @@
 "use client";
-import { packages as staticPackages } from "@/data/packages";
+import { packages } from "../../data/packages"; // ✅ Jalur yang benar
 import { useState, useEffect } from "react";
 import {
   Phone,
@@ -87,9 +87,9 @@ export default function PackageDetailPage({ params }) {
   if (!pkg) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white">
-        <p className="text-gray-500 text-lg mb-4">Package not found.</p>
+        <p className="text-gray-500 text-lg mb-4">Paket tidak ditemukan.</p>
         <a href="/#packages" className="text-[#8B2070] font-semibold underline">
-          ← Back to Packages
+          ← Kembali ke Paket
         </a>
       </div>
     );
@@ -100,6 +100,11 @@ export default function PackageDetailPage({ params }) {
   const itinerary = Array.isArray(pkg.itinerary) ? pkg.itinerary : [];
   const departures = Array.isArray(pkg.departures) ? pkg.departures : [];
   const otherPackages = allPackages.filter((p) => p.id !== pkg.id);
+  const whatsappNumber = "6285825326780";
+  const whatsappMessage = encodeURIComponent(
+    `Assalamualaikum Jejak Imani, saya ingin konsultasi tentang ${pkg.title}. Mohon informasinya.`
+  );
+  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -124,7 +129,7 @@ export default function PackageDetailPage({ params }) {
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      setSubmitError("Something went wrong. Please try again or call us.");
+      setSubmitError("Terjadi kendala. Silakan coba lagi atau hubungi kami.");
     } finally {
       setSubmitting(false);
     }
@@ -138,23 +143,23 @@ export default function PackageDetailPage({ params }) {
           <a href="/" className="flex items-center gap-2">
             <div className="bg-[#1a1a2e] rounded-lg p-2">
               <span className="text-[#d4af37] font-bold text-xl tracking-wide">
-                I'TIMAAR
+                Jejak Imani
               </span>
             </div>
           </a>
           <div className="hidden md:flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm text-gray-700">
               <Phone size={16} className="text-[#c0392b]" />
-              <span className="font-semibold">+44 20 1234 5678</span>
+              <span className="font-semibold">+62 858-2532-6780</span>
             </div>
             <button
               onClick={() => setShowEnquiry(true)}
               className="bg-[#c0392b] text-white px-4 py-2 rounded text-sm font-semibold hover:bg-[#a93226] transition-colors"
             >
-              Enquire Now
+              Konsultasi
             </button>
           </div>
-          <a href="tel:+442012345678" className="md:hidden text-[#c0392b]">
+          <a href="tel:+6285825326780" className="md:hidden text-[#c0392b]">
             <Phone size={22} />
           </a>
         </div>
@@ -173,7 +178,7 @@ export default function PackageDetailPage({ params }) {
           href="/#packages"
           className="absolute top-4 left-4 flex items-center gap-1 bg-white/20 backdrop-blur text-white text-sm font-semibold px-3 py-1.5 rounded-full hover:bg-white/30 transition-colors"
         >
-          <ChevronLeft size={16} /> Back
+          <ChevronLeft size={16} /> Kembali
         </a>
         {/* Tag */}
         <span className="absolute top-4 right-4 bg-[#8B2070] text-white text-xs font-bold px-3 py-1 rounded-full">
@@ -182,7 +187,7 @@ export default function PackageDetailPage({ params }) {
         {/* Title overlay */}
         <div className="absolute bottom-0 left-0 right-0 px-4 pb-5">
           <span className="inline-flex items-center gap-1 bg-white/20 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full mb-2">
-            <Moon size={11} className="fill-white" /> {pkg.total_nights} Nights
+            <Moon size={11} className="fill-white" /> {pkg.total_nights} Malam
           </span>
           <h1 className="text-white text-xl md:text-3xl font-bold leading-tight">
             {pkg.title}
@@ -200,28 +205,36 @@ export default function PackageDetailPage({ params }) {
       </div>
 
       {/* PRICE BAR */}
-      <div className="bg-[#1a1a2e] px-4 py-4 flex items-center justify-between">
+      <div className="bg-[#1a1a2e] px-4 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <p className="text-gray-400 text-xs">Starting from</p>
+          <p className="text-gray-400 text-xs">Mulai dari</p>
           <p className="text-white text-2xl font-extrabold">
             {pkg.price}{" "}
             <span className="text-gray-400 text-sm font-normal">
-              per person
+              per orang
             </span>
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <a
-            href="tel:+442012345678"
+            href="tel:+6285825326780"
             className="flex items-center gap-1.5 border-2 border-[#d4af37] text-[#d4af37] px-4 py-2 rounded-xl text-xs font-bold"
           >
-            <Phone size={13} /> Call Us
+            <Phone size={13} /> Telepon
+          </a>
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 bg-green-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-green-700 transition-colors"
+          >
+            WhatsApp
           </a>
           <button
             onClick={() => setShowEnquiry(true)}
             className="bg-[#c8961a] text-white px-4 py-2 rounded-xl text-xs font-bold"
           >
-            Enquire Now
+            Konsultasi
           </button>
         </div>
       </div>
@@ -230,7 +243,7 @@ export default function PackageDetailPage({ params }) {
         {/* DESCRIPTION */}
         <div>
           <h2 className="text-lg font-bold text-gray-900 mb-2">
-            About This Package
+            Tentang Paket Ini
           </h2>
           <p className="text-gray-600 text-sm leading-relaxed">
             {pkg.description}
@@ -239,14 +252,14 @@ export default function PackageDetailPage({ params }) {
 
         {/* HOTELS */}
         <div>
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Your Hotels</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-4">Hotel Anda</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Makkah */}
             <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
               {hotelImages[0] && (
                 <img
                   src={hotelImages[0]}
-                  alt="Makkah Hotel"
+                  alt="Hotel Makkah"
                   className="w-full h-36 object-cover"
                 />
               )}
@@ -259,7 +272,7 @@ export default function PackageDetailPage({ params }) {
                   {pkg.makkah_hotel}
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
-                  {pkg.makkah_nights} nights
+                  {pkg.makkah_nights} malam
                 </p>
                 <div className="flex gap-0.5 mt-1.5">
                   {Array.from({ length: pkg.stars }).map((_, i) => (
@@ -277,7 +290,7 @@ export default function PackageDetailPage({ params }) {
               {hotelImages[1] && (
                 <img
                   src={hotelImages[1]}
-                  alt="Madinah Hotel"
+                  alt="Hotel Madinah"
                   className="w-full h-36 object-cover"
                 />
               )}
@@ -290,7 +303,7 @@ export default function PackageDetailPage({ params }) {
                   {pkg.madinah_hotel}
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
-                  {pkg.madinah_nights} nights
+                  {pkg.madinah_nights} malam
                 </p>
                 <div className="flex gap-0.5 mt-1.5">
                   {Array.from({ length: pkg.stars }).map((_, i) => (
@@ -310,7 +323,7 @@ export default function PackageDetailPage({ params }) {
         {includes.length > 0 && (
           <div>
             <h2 className="text-lg font-bold text-gray-900 mb-4">
-              What's Included
+              Fasilitas Termasuk
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {includes.map((item, i) => (
@@ -332,7 +345,7 @@ export default function PackageDetailPage({ params }) {
         {/* ITINERARY */}
         {itinerary.length > 0 && (
           <div>
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Itinerary</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Rencana Perjalanan</h2>
             <div className="space-y-2">
               {itinerary.map((item, i) => (
                 <div
@@ -378,7 +391,7 @@ export default function PackageDetailPage({ params }) {
         {otherPackages.length > 0 && (
           <div>
             <h2 className="text-lg font-bold text-gray-900 mb-4">
-              Other Packages
+              Paket Lainnya
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {otherPackages.slice(0, 3).map((other) => (
@@ -400,7 +413,7 @@ export default function PackageDetailPage({ params }) {
                   <div className="p-3">
                     <span className="inline-flex items-center gap-1 bg-[#f3e8f5] text-[#8B2070] text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5">
                       <Moon size={9} className="fill-[#8B2070]" />
-                      {other.total_nights} Nights
+                      {other.total_nights} Malam
                     </span>
                     <p className="font-bold text-gray-900 text-xs leading-snug mb-1">
                       {other.title}
@@ -410,7 +423,7 @@ export default function PackageDetailPage({ params }) {
                         {other.price}
                       </span>
                       <span className="text-[#8B2070] text-xs font-bold group-hover:underline">
-                        View →
+                        Lihat →
                       </span>
                     </div>
                   </div>
@@ -423,9 +436,9 @@ export default function PackageDetailPage({ params }) {
         {/* TRUST BADGES */}
         <div className="bg-[#1a1a2e] rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-8 justify-center">
           {[
-            { icon: Shield, label: "ATOL Protected" },
-            { icon: Award, label: "ABTA & IATA Member" },
-            { icon: Phone, label: "24/7 Support" },
+            { icon: Shield, label: "Informasi Aman" },
+            { icon: Award, label: "Layanan Terpercaya" },
+            { icon: Phone, label: "Konsultasi WhatsApp" },
           ].map((b, i) => (
             <div key={i} className="flex items-center gap-2 text-white">
               <b.icon size={18} className="text-[#d4af37]" />
@@ -437,19 +450,38 @@ export default function PackageDetailPage({ params }) {
         {/* BOTTOM CTA */}
         <div className="flex flex-col sm:flex-row gap-3 pb-4">
           <a
-            href="tel:+442012345678"
+            href="tel:+6285825326780"
             className="flex-1 flex items-center justify-center gap-2 border-2 border-[#8B2070] text-[#8B2070] py-3.5 rounded-xl text-sm font-bold hover:bg-[#8B2070] hover:text-white transition-colors"
           >
-            <Phone size={15} /> Call Our Expert
+            <Phone size={15} /> Hubungi Tim Kami
+          </a>
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3.5 rounded-xl text-sm font-bold hover:bg-green-700 transition-colors"
+          >
+            WhatsApp Sekarang
           </a>
           <button
             onClick={() => setShowEnquiry(true)}
             className="flex-1 bg-[#c8961a] hover:bg-[#b5841a] text-white py-3.5 rounded-xl text-sm font-bold transition-colors"
           >
-            Enquire Now
+            Konsultasi
           </button>
         </div>
       </div>
+
+      {/* FLOATING WHATSAPP */}
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed right-4 bottom-4 z-40 flex items-center gap-2 rounded-full bg-green-600 px-4 py-3 text-sm font-bold text-white shadow-lg hover:bg-green-700 transition-colors"
+        aria-label="Konsultasi lewat WhatsApp"
+      >
+        <Phone size={17} /> WhatsApp
+      </a>
 
       {/* ENQUIRY MODAL */}
       {showEnquiry && (
@@ -457,7 +489,7 @@ export default function PackageDetailPage({ params }) {
           <div className="bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-2xl shadow-2xl overflow-hidden">
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <h3 className="font-bold text-gray-900 text-base">
-                Enquire About This Package
+                Konsultasi Paket Ini
               </h3>
               <button
                 onClick={() => setShowEnquiry(false)}
@@ -476,11 +508,11 @@ export default function PackageDetailPage({ params }) {
                   />
                 </div>
                 <h4 className="text-lg font-bold text-gray-800 mb-2">
-                  Enquiry Sent!
+                  Konsultasi Terkirim!
                 </h4>
                 <p className="text-gray-500 text-sm">
-                  One of our experts will contact you within 24 hours.
-                  JazakAllah Khair! 🤲
+                  Tim Jejak Imani akan menghubungi Anda maksimal dalam 24 jam.
+                  Jazakumullah khair! 🤲
                 </p>
                 <button
                   onClick={() => {
@@ -489,7 +521,7 @@ export default function PackageDetailPage({ params }) {
                   }}
                   className="mt-6 bg-[#8B2070] text-white px-6 py-2.5 rounded-xl text-sm font-semibold"
                 >
-                  Close
+                  Tutup
                 </button>
               </div>
             ) : (
@@ -498,20 +530,20 @@ export default function PackageDetailPage({ params }) {
                 className="px-5 py-5 space-y-3 overflow-y-auto max-h-[80vh]"
               >
                 <p className="text-xs text-gray-500 mb-3">
-                  Package:{" "}
+                  Paket:{" "}
                   <span className="font-semibold text-gray-800">
                     {pkg.title}
                   </span>
                 </p>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs text-gray-500 font-medium block mb-1">
-                      Full Name *
+                      Nama Lengkap *
                     </label>
                     <input
                       required
                       type="text"
-                      placeholder="e.g. Ahmed Ali"
+                      placeholder="Contoh: Ahmad Ali"
                       className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#8B2070]"
                       value={form.name}
                       onChange={(e) =>
@@ -521,12 +553,12 @@ export default function PackageDetailPage({ params }) {
                   </div>
                   <div>
                     <label className="text-xs text-gray-500 font-medium block mb-1">
-                      Phone *
+                      Nomor WhatsApp *
                     </label>
                     <input
                       required
                       type="tel"
-                      placeholder="+44..."
+                      placeholder="+62..."
                       className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#8B2070]"
                       value={form.phone}
                       onChange={(e) =>
@@ -542,7 +574,7 @@ export default function PackageDetailPage({ params }) {
                   <input
                     required
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder="emailanda@email.com"
                     className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#8B2070]"
                     value={form.email}
                     onChange={(e) =>
@@ -550,10 +582,10 @@ export default function PackageDetailPage({ params }) {
                     }
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs text-gray-500 font-medium block mb-1">
-                      Preferred Departure
+                      Perkiraan Keberangkatan
                     </label>
                     <select
                       className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#8B2070]"
@@ -562,7 +594,7 @@ export default function PackageDetailPage({ params }) {
                         setForm({ ...form, departure: e.target.value })
                       }
                     >
-                      <option value="">Select...</option>
+                      <option value="">Pilih...</option>
                       {departures.map((d, i) => (
                         <option key={i}>{d}</option>
                       ))}
@@ -570,7 +602,7 @@ export default function PackageDetailPage({ params }) {
                   </div>
                   <div>
                     <label className="text-xs text-gray-500 font-medium block mb-1">
-                      No. of Adults
+                      Jumlah Dewasa
                     </label>
                     <select
                       className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#8B2070]"
@@ -587,11 +619,11 @@ export default function PackageDetailPage({ params }) {
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 font-medium block mb-1">
-                    Message (optional)
+                    Pesan tambahan (opsional)
                   </label>
                   <textarea
                     rows={3}
-                    placeholder="Any special requirements or questions..."
+                    placeholder="Tulis kebutuhan khusus atau pertanyaan Anda..."
                     className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#8B2070] resize-none"
                     value={form.message}
                     onChange={(e) =>
@@ -615,11 +647,11 @@ export default function PackageDetailPage({ params }) {
                       style={{ animation: "spin 0.7s linear infinite" }}
                     />
                   ) : (
-                    "Send Enquiry"
+                    "Kirim Konsultasi"
                   )}
                 </button>
                 <p className="text-center text-[11px] text-gray-400">
-                  We'll respond within 24 hours. Your info is 100% secure.
+                  Kami akan merespons maksimal 24 jam. Data Anda aman.
                 </p>
               </form>
             )}

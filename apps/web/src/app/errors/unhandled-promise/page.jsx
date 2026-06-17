@@ -6,3 +6,5 @@ export default function Fetcher() {
   }, []);
   return <div>unhandled promise</div>;
 }
+
+

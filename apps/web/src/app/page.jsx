@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { packages as staticPackages } from "@/data/packages";
+import { packages as staticPackages } from "./data/packages"; // ✅ Jalur yang benar dan aman
 import {
   Phone,
   ChevronDown,
@@ -187,26 +187,75 @@ export default function HomePage() {
             <a href="/" className="hover:text-[#c0392b] transition-colors">
               Beranda
             </a>
+
+            <div className="relative group">
+              <a
+                href="/#packages"
+                className="hover:text-[#c0392b] transition-colors flex items-center gap-1"
+              >
+                Paket Umroh
+                <ChevronDown size={14} />
+              </a>
+
+              <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2">
+                  <a
+                    href="/umroh/desember"
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#fff5f3] hover:text-[#c0392b] transition-colors"
+                  >
+                    Umroh Desember
+                  </a>
+                  <a
+                    href="/umroh/januari"
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#fff5f3] hover:text-[#c0392b] transition-colors"
+                  >
+                    Umroh Januari
+                  </a>
+                  <a
+                    href="/umroh/februari"
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#fff5f3] hover:text-[#c0392b] transition-colors"
+                  >
+                    Umroh Februari
+                  </a>
+                  <a
+                    href="/umroh/maret"
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#fff5f3] hover:text-[#c0392b] transition-colors"
+                  >
+                    Umroh Maret
+                  </a>
+                  <a
+                    href="/umroh/ramadhan"
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#fff5f3] hover:text-[#c0392b] transition-colors"
+                  >
+                    Umroh Ramadhan
+                  </a>
+                  <a
+                    href="/umroh/syawal"
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#fff5f3] hover:text-[#c0392b] transition-colors"
+                  >
+                    Umroh Syawal
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <a
-              href="/#packages"
+              href="/haji-plus"
               className="hover:text-[#c0392b] transition-colors"
             >
-              Paket Umroh
-            </a>
-            <a
-              href="/#packages"
-              className="hover:text-[#c0392b] transition-colors"
-            >
-              Paket Haji
+              Paket Haji Plus
             </a>
             <a href="/about" className="hover:text-[#c0392b] transition-colors">
               Tentang Kami
             </a>
-            <a
+            <a 
               href="/contact"
               className="hover:text-[#c0392b] transition-colors"
             >
               Kontak
+            </a>
+            <a href="/galeri" className="hover:text-[#c0392b] transition-colors">
+               Galeri
             </a>
             <a
               href="/blog"
@@ -244,17 +293,50 @@ export default function HomePage() {
             <a href="/" onClick={() => setMenuOpen(false)}>
               Beranda
             </a>
-            <a href="/#packages" onClick={() => setMenuOpen(false)}>
-              Paket Umroh
-            </a>
-            <a href="/#packages" onClick={() => setMenuOpen(false)}>
-              Paket Haji
+
+            <div className="border-t border-gray-100 pt-3">
+              <a
+                href="/#packages"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between font-semibold text-gray-800"
+              >
+                Paket Umroh
+                <ChevronDown size={16} className="text-[#c0392b]" />
+              </a>
+
+              <div className="mt-2 pl-4 flex flex-col gap-2 text-sm text-gray-600">
+                <a href="/umroh/desember" onClick={() => setMenuOpen(false)}>
+                  Umroh Desember
+                </a>
+                <a href="/umroh/januari" onClick={() => setMenuOpen(false)}>
+                  Umroh Januari
+                </a>
+                <a href="/umroh/februari" onClick={() => setMenuOpen(false)}>
+                  Umroh Februari
+                </a>
+                <a href="/umroh/maret" onClick={() => setMenuOpen(false)}>
+                  Umroh Maret
+                </a>
+                <a href="/umroh/ramadhan" onClick={() => setMenuOpen(false)}>
+                  Umroh Ramadhan
+                </a>
+                <a href="/umroh/syawal" onClick={() => setMenuOpen(false)}>
+                  Umroh Syawal
+                </a>
+              </div>
+            </div>
+
+            <a href="/haji-plus" onClick={() => setMenuOpen(false)}>
+              Paket Haji Plus
             </a>
             <a href="/about" onClick={() => setMenuOpen(false)}>
               Tentang Kami
             </a>
             <a href="/contact" onClick={() => setMenuOpen(false)}>
               Kontak
+            </a>
+            <a href="/galeri" onClick={() => setMenuOpen(false)}>
+               Galeri
             </a>
             <a href="/blog" onClick={() => setMenuOpen(false)}>
               Blog
@@ -1098,6 +1180,8 @@ export default function HomePage() {
         body { font-family: 'Inter', sans-serif; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
       `}</style>
-    </div>
+          </div>
   );
 }
+
+

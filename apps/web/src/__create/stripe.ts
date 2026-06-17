@@ -850,3 +850,5 @@ const stripe = hasEnv
 
 export default stripe;
 export { stripe as Stripe };
+
+

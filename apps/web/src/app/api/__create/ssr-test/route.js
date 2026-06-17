@@ -64,3 +64,5 @@ export async function GET(request) {
 		.filter((result) => result !== null);
 	return Response.json({ results: cleanedResults });
 }
+
+

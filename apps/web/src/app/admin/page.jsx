@@ -1,4 +1,4 @@
-import { adminAuthResponse } from "@/app/api/utils/auth";
+import auth from "../api/utils/auth"; // ✅ Menggunakan nama variabel asli
 import { useEffect, useState } from "react";
 import {
   Package,
@@ -240,3 +240,4 @@ export default function AdminDashboard() {
     </div>
   );
 }
+
