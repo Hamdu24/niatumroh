@@ -5,25 +5,35 @@ export default function SmartWhatsApp() {
   const [waLink, setWaLink] = useState("");
 
   useEffect(() => {
-    // Membaca halaman langsung dari browser jemaah (Sangat aman untuk Vite)
-    const pathname = window.location.pathname;
+    // Kode ini HANYA berjalan setelah browser benar-benar siap (Aman dari crash SSR)
+    if (typeof window !== "undefined") {
+      const pathname = window.location.pathname;
 
-    let pageName = "home";
-    let detail = "";
+      let pageName = "home";
+      let detail = "";
 
-    if (pathname.includes("/packages/")) {
-      pageName = "detail-paket";
-      const slug = pathname.split("/").pop();
-      detail = slug ? slug.replace(/-/g, " ") : "Paket Umroh";
-    } else if (pathname.includes("/contact") || pathname.includes("/kontak")) {
-      pageName = "contact";
+      if (pathname.includes("/packages/")) {
+        pageName = "detail-paket";
+        const slug = pathname.split("/").pop();
+        detail = slug ? slug.replace(/-/g, " ") : "Paket Umroh";
+      } else if (pathname.includes("/contact") || pathname.includes("/kontak")) {
+        pageName = "contact";
+      }
+
+      // Pastikan fungsi getWhatsAppLink aman dipanggil
+      try {
+        const link = getWhatsAppLink(pageName, detail);
+        setWaLink(link);
+      } catch (error) {
+        console.error("Gagal membuat link WA:", error);
+      }
     }
-
-    const link = getWhatsAppLink(pageName, detail);
-    setWaLink(link);
   }, []);
 
-  if (!waLink) return null;
+  // JANGAN gunakan 'return null' di awal jika state belum siap karena bisa memotong rendering
+  if (!waLink) {
+    return null; 
+  }
 
   return (
     <a
