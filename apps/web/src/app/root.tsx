@@ -1,4 +1,3 @@
-import SmartWhatsApp from "../components/SmartWhatsApp";
 import {
   Links,
   Meta,
@@ -442,7 +441,6 @@ export function Layout({ children }) {
           href="https://ka-p.fontawesome.com/releases/v6.3.0/css/pro.min.css?token=2c15cc0cc7"
           crossOrigin="anonymous"
         />
-      <SmartWhatsApp />
       </body>
     </html>
   );
