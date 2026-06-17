@@ -1,3 +1,4 @@
+import SmartWhatsApp from "../components/SmartWhatsApp";
 import {
   Links,
   Meta,
@@ -452,6 +453,7 @@ export default function App() {
   return (
     <SessionProvider>
       <Outlet />
+      <SmartWhatsApp />
     </SessionProvider>
   );
 }
